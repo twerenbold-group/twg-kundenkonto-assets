@@ -1,5 +1,5 @@
 {
-  "sourceCommit": "81a0b21fad3c207e4c2927becc3d9d1689f6c2c8",
+  "sourceCommit": "a9ebc459c77004134fdd7c080f041a93a02f9291",
   "files": [
     {
       "path": "v1/assets/excellence/heart.svg",
@@ -27,11 +27,11 @@
     },
     {
       "path": "v1/auto-filler.bundle.js",
-      "sha256": "9afbbefd510c191532d97ee460f7ec6b37354d75b2305cb99d4ce3763417653f"
+      "sha256": "023f5ea9a3fcaa5803122583a8eeebada0bbb0ddf65adb870dac7bad74e8d62d"
     },
     {
       "path": "v1/config/language-config.json",
-      "sha256": "3f693f2dcc3961c2a00a5b07c250496112d0337153e178c6fa76e479620e318b"
+      "sha256": "3c30f0ef2167ce1c542bfde849ad58f2366174cbb435aeabf285045a4b43a65c"
     },
     {
       "path": "v1/css-variables.css",
@@ -70,24 +70,24 @@
       "sha256": "6d54a7801c3ab147a2603f0a78e3153dd4d4023117f0cd416e6ddf43dab92c64"
     },
     {
-      "path": "v1/scroll-lock-CQElyp-P.js",
-      "sha256": "62da5dbc52ba0107f47db88e92bdf9d1003b7e054e1171a74d93ff91b2901e8a"
+      "path": "v1/scroll-lock-Cv6OHDjP.js",
+      "sha256": "4469665f17ece776202812516803fe7cd86d715b230da27363b2d91ca814d978"
     },
     {
       "path": "v1/theme-config.css",
-      "sha256": "83dd876b4c0b31469f3b05924e67ddb9c7016210a449883fc3866b8505c80876"
+      "sha256": "ac05e4a60ee22e5bd33e7e904c0db2ff2e81a2f70ce3dd859e6520b850c69a8e"
     },
     {
       "path": "v1/twerenbold-account-embed.bundle.js",
-      "sha256": "c14969b3ee04409014720777a95d3b753f61f4664fec75e319994f0cdb9ef191"
+      "sha256": "f46ccc1ab96fead4af8cad83f2915f69b6239d23f05c70b7539831f13ea95810"
     },
     {
-      "path": "v1/twerenbold-account-embed.entry-wFAOk4VK.js",
-      "sha256": "bc0b7da3735ead47f019b70f60047b59ae9a8772e30af57b5379277963eb1a42"
+      "path": "v1/twerenbold-account-embed.entry-n6lLhwDr.js",
+      "sha256": "efd4b5b95108e9f6a226063fcf607cf0949e2f7e4f3bf85bd45c8a33a5c7e596"
     },
     {
       "path": "v1/twerenbold-components.bundle.js",
-      "sha256": "9ce583ddf3ff03043d499aea8fb7490c1c555a8220ec10b771442b2d11d4d1ef"
+      "sha256": "5e52725c5e6030a5ac5ebc0f3ecdd49ae06f5240bc4401f72c2ea6e38d2cb15a"
     },
     {
       "path": "v1/twerenbold-design-system.css",
@@ -107,7 +107,7 @@
     },
     {
       "path": "v1/watchlist-syncer.bundle.js",
-      "sha256": "455459894e77fb8cd33acdb808787a6a11c620243d7d4c8f4b52aa6fb8f74a45"
+      "sha256": "aaee9a851ba6c8f16b22898e9f1617a62e3533e220daeffe3099bde91fcfc352"
     }
   ]
 }

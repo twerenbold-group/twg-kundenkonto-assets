@@ -221,9 +221,10 @@
     "overview": {
       "pageTitle": "Kontoübersicht",
       "welcomeMessage": "Willkommen",
+      "customerNumberLabel": "Kundennummer",
       "loading": "Wird geladen...",
       "tripsTitle": "Meine Reisen",
-      "tripsDescription": "Sehen Sie Ihre gebuchten Reisen und verwalten Sie Ihre Buchungen.",
+      "tripsDescription": "Sehen Sie Ihre gebuchten Reisen.",
       "accountTitle": "Persönliche Daten",
       "accountDescription": "Bearbeiten Sie Ihre Personalien und die ihrer Mitreisenden.",
       "newsletterDescription": "Verwalten Sie Ihre Newsletter-Abos und entscheiden Sie selbst, welche Angebote Sie erhalten möchten.",

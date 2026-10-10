@@ -1,16 +1,16 @@
-class g {
+class h {
   constructor(e = {}) {
-    const t = g.getScriptAttributes();
+    const t = h.getScriptAttributes();
     this._domConfig = t, this.useDataAttributes = e.useDataAttributes === !0, this.config = this.useDataAttributes ? { ...t, ...e } : { ...e };
-    const i = localStorage.getItem("twerenbold_debug_target_key");
-    i && console.warn("[WatchlistSyncer] ⚠️ Using DEBUG targetKey form localStorage:", i), this.targetKey = i || this.config.targetKey || "travel-list", this.tokenKey = this.config.tokenKey || "azure_token", this.baseUrl = this.config.baseUrl ? this.config.baseUrl.replace(/\/$/, "") : null, this.defaultProviderId = this.config.defaultProviderId !== void 0 ? this.config.defaultProviderId : 0, this.intervalMs = this.config.interval || 1e3, this.debug = this.config.debug || !1, this.logLocalWipe = this.config.logLocalWipe || !1, this.preventEmptyDelete = this.config.preventEmptyDelete !== void 0 ? this.config.preventEmptyDelete : !0, this.guardDeleteByServer = this.config.guardDeleteByServer || !1, this.watchlistBaseUrl = null, this.lastKnownValue = null, this.isSyncing = !1, this.pollerId = null, this.handleStorageEvent = this.handleStorageEvent.bind(this), this.handleFavoritesUpdated = this.handleFavoritesUpdated.bind(this), this.handleLogout = this.handleLogout.bind(this), this.init();
+    const n = localStorage.getItem("twerenbold_debug_target_key");
+    n && console.warn("[WatchlistSyncer] ⚠️ Using DEBUG targetKey form localStorage:", n), this.targetKey = n || this.config.targetKey || "travel-list", this.tokenKey = this.config.tokenKey || "azure_token", this.baseUrl = this.config.baseUrl ? this.config.baseUrl.replace(/\/$/, "") : null, this.defaultProviderId = this.config.defaultProviderId !== void 0 ? this.config.defaultProviderId : 0, this.intervalMs = this.config.interval || 1e3, this.debug = this.config.debug || !1, this.logLocalWipe = this.config.logLocalWipe || !1, this.preventEmptyDelete = this.config.preventEmptyDelete !== void 0 ? this.config.preventEmptyDelete : !0, this.guardDeleteByServer = this.config.guardDeleteByServer || !1, this.watchlistBaseUrl = null, this.lastKnownValue = null, this.isSyncing = !1, this.pollerId = null, this._generation = 0, this._destroyed = !1, this._startPromise = null, this.handleStorageEvent = this.handleStorageEvent.bind(this), this.handleFavoritesUpdated = this.handleFavoritesUpdated.bind(this), this.handleLogout = this.handleLogout.bind(this), this.handleAuthChanged = this.handleAuthChanged.bind(this), this.ready = this.init();
   }
   /**
    * Extrahiert Konfiguration aus dem aktuell ausgeführten Script-Tag
    */
   static getScriptAttributes() {
     let e = document.currentScript;
-    return e || (e = document.querySelector('script[src*="watchlist-syncer.js"]')), console.log("Watchlist Script found:", e), e ? {
+    return e || (e = document.querySelector('script[src*="watchlist-syncer.js"], script[src*="watchlist-syncer.bundle.js"]')), console.log("Watchlist Script found:", e), e ? {
       baseUrl: e.getAttribute("data-base-url"),
       targetKey: e.getAttribute("data-target-key"),
       tokenKey: e.getAttribute("data-token-key"),
@@ -23,30 +23,54 @@ class g {
     } : {};
   }
   async init() {
-    await this._loadThemeConfig();
-    const e = this._resolveBaseUrl();
-    if (!e) {
+    const e = this._generation;
+    if (window.addEventListener("auth-changed", this.handleAuthChanged), window.addEventListener("twerenbold:post-logout", this.handleLogout), await this._loadThemeConfig(), this._destroyed) return;
+    const t = this._resolveBaseUrl();
+    if (!t) {
       console.error("[WatchlistSyncer] Base URL fehlt. Bitte in component-config setzen (watchlist.baseUrl) oder via Konstruktor übergeben.");
       return;
     }
-    this.baseUrl = e;
-    const t = localStorage.getItem("twerenbold_logout_timestamp");
-    if (t && Date.now() - parseInt(t, 10) < 1e4 && (this._log("Info", "Detected recent logout flag. Triggering cleanup."), this.handleLogout(), localStorage.removeItem("twerenbold_logout_timestamp")), !await this.getToken()) {
-      this._log("Warn", "Kein Token (Key: " + this.tokenKey + "). Sync pausiert.");
+    this.baseUrl = t;
+    const n = localStorage.getItem("twerenbold_logout_timestamp");
+    n && Date.now() - parseInt(n, 10) < 1e4 && (this._log("Info", "Detected recent logout flag. Triggering cleanup."), this.handleLogout(), localStorage.removeItem("twerenbold_logout_timestamp")), e === this._generation && await this.startSync();
+  }
+  handleAuthChanged(e) {
+    var n;
+    if (((n = e.detail) == null ? void 0 : n.isAuthenticated) !== !0) {
+      this.stopSync();
       return;
     }
-    window.addEventListener("storage", this.handleStorageEvent), document.addEventListener("favorites-updated", this.handleFavoritesUpdated), window.addEventListener("twerenbold:post-logout", this.handleLogout);
+    const t = this._generation;
+    this.ready.then(() => {
+      if (t === this._generation) return this.startSync();
+    });
+  }
+  stopSync() {
+    this._generation++, this._startPromise = null, this.isSyncing = !1, this.pollerId !== null && clearInterval(this.pollerId), this.pollerId = null, window.removeEventListener("storage", this.handleStorageEvent), document.removeEventListener("favorites-updated", this.handleFavoritesUpdated);
+  }
+  async startSync() {
+    if (this._destroyed || !this.baseUrl || this.pollerId !== null) return;
+    if (this._startPromise) return this._startPromise;
+    const e = this._generation, t = () => !this._destroyed && e === this._generation, n = (async () => {
+      try {
+        if (!await this.getToken() || !t() || (await this.performInitialSync(e), !t())) return;
+        window.addEventListener("storage", this.handleStorageEvent), document.addEventListener("favorites-updated", this.handleFavoritesUpdated), this.startPolling();
+      } catch (i) {
+        this._log("Error", "Initialisierung fehlgeschlagen", i);
+      }
+    })();
+    this._startPromise = n;
     try {
-      await this.performInitialSync(), this.startPolling();
-    } catch (i) {
-      this._log("Error", "Initialisierung fehlgeschlagen", i);
+      await n;
+    } finally {
+      this._startPromise === n && (this._startPromise = null);
     }
   }
   handleStorageEvent(e) {
     e.key === this.targetKey && (this._log("Info", "Cross-Tab Änderung erkannt. Trigger Sync."), this.checkForChanges(), this._dispatchGlobalEvent(e.newValue));
   }
   handleLogout() {
-    this._log("Info", "Logout detected. Clearing local watchlist storage safely."), localStorage.setItem("watchlist_logout_pending", Date.now().toString()), localStorage.removeItem(this.targetKey), this.lastKnownValue = null, this.isSyncing = !1, this._dispatchGlobalEvent(""), setTimeout(() => {
+    this.stopSync(), this._log("Info", "Logout detected. Clearing local watchlist storage safely."), localStorage.setItem("watchlist_logout_pending", Date.now().toString()), localStorage.removeItem(this.targetKey), this.lastKnownValue = null, this.isSyncing = !1, this._dispatchGlobalEvent(""), setTimeout(() => {
       localStorage.removeItem("watchlist_logout_pending");
     }, 5e3);
   }
@@ -54,14 +78,14 @@ class g {
     if (!e.detail || !Array.isArray(e.detail.items)) return;
     this._log("Info", "Receiver favorites-updated from application. Syncing local CSV.");
     const t = e.detail.items;
-    let i = t;
-    this.defaultProviderId !== void 0 && (i = t.filter((n) => {
-      var l, d, u;
-      const c = n.providerId ?? ((d = (l = n.trip) == null ? void 0 : l.provider) == null ? void 0 : d.id) ?? ((u = n.serverFavorite) == null ? void 0 : u.providerId);
-      return c != null ? Number(c) === Number(this.defaultProviderId) : !1;
-    }), this._log("Info", `Filtered CSV update: Kept ${i.length}/${t.length} items for Provider ${this.defaultProviderId}`));
-    const r = i.map((n) => n.code || n.tripId || n.trip && (n.trip.code || n.trip.productCode)).filter((n) => n), a = Array.from(new Set(r)).join(",");
-    a !== this.lastKnownValue && (this.updateLocalStorageSilent(a), this.lastKnownValue = a);
+    let n = t;
+    this.defaultProviderId !== void 0 && (n = t.filter((r) => {
+      var o, c, d;
+      const a = r.providerId ?? ((c = (o = r.trip) == null ? void 0 : o.provider) == null ? void 0 : c.id) ?? ((d = r.serverFavorite) == null ? void 0 : d.providerId);
+      return a != null ? Number(a) === Number(this.defaultProviderId) : !1;
+    }), this._log("Info", `Filtered CSV update: Kept ${n.length}/${t.length} items for Provider ${this.defaultProviderId}`));
+    const i = n.map((r) => r.code || r.tripId || r.trip && (r.trip.code || r.trip.productCode)).filter((r) => r), l = Array.from(new Set(i)).join(",");
+    l !== this.lastKnownValue && (this.updateLocalStorageSilent(l), this.lastKnownValue = l);
   }
   async getToken() {
     if (this.config.getToken && typeof this.config.getToken == "function")
@@ -79,16 +103,16 @@ class g {
     if (e) return e;
     const t = this.getCurrentUserId();
     if (t) {
-      const r = `twerenbold_token_${t}`, s = localStorage.getItem(r);
+      const i = `twerenbold_token_${t}`, s = localStorage.getItem(i);
       if (s)
         return this._log("Info", "Scoped Token gefunden für User:", t), s;
     }
-    const i = localStorage.getItem("access_token");
-    return i ? (this._log("Info", "Legacy Global Token gefunden."), i) : this.findMsalToken(t);
+    const n = localStorage.getItem("access_token");
+    return n ? (this._log("Info", "Legacy Global Token gefunden."), n) : this.findMsalToken(t);
   }
   async findRuntimeToken() {
-    var t, i;
-    if ((i = (t = window.apiService) == null ? void 0 : t.authComponent) != null && i.getAccessToken)
+    var t, n;
+    if ((n = (t = window.apiService) == null ? void 0 : t.authComponent) != null && n.getAccessToken)
       try {
         return await window.apiService.authComponent.getAccessToken();
       } catch {
@@ -110,38 +134,38 @@ class g {
   findMsalToken(e = null) {
     e ? this._log("Info", "Filtere MSAL Tokens für User ID:", e) : this._log("Info", "Keine User-ID für MSAL Scan verfügbar. Scannt alle...");
     let t = 0;
-    for (let i = 0; i < localStorage.length; i++) {
-      const r = localStorage.key(i);
-      if (r.toLowerCase().includes("accesstoken") && !(e && !r.includes(e))) {
+    for (let n = 0; n < localStorage.length; n++) {
+      const i = localStorage.key(n);
+      if (i.toLowerCase().includes("accesstoken") && !(e && !i.includes(e))) {
         t++;
         try {
-          const a = localStorage.getItem(r), n = JSON.parse(a), c = n.credentialType && n.credentialType.toLowerCase() === "accesstoken", l = !n.tokenType || n.tokenType.toLowerCase() === "bearer", d = !!n.secret;
-          if (n && c && d && l) {
-            if (n.expiresOn) {
-              const u = Math.floor(Date.now() / 1e3);
-              if (parseInt(n.expiresOn, 10) <= u) {
-                this._log("Debug", "Abgelaufenes Token ignoriert:", r, "Expire:", n.expiresOn, "Now:", u);
+          const l = localStorage.getItem(i), r = JSON.parse(l), a = r.credentialType && r.credentialType.toLowerCase() === "accesstoken", o = !r.tokenType || r.tokenType.toLowerCase() === "bearer", c = !!r.secret;
+          if (r && a && c && o) {
+            if (r.expiresOn) {
+              const d = Math.floor(Date.now() / 1e3);
+              if (parseInt(r.expiresOn, 10) <= d) {
+                this._log("Debug", "Abgelaufenes Token ignoriert:", i, "Expire:", r.expiresOn, "Now:", d);
                 continue;
               }
             }
-            return this._log("Info", "Gültiges MSAL Token gefunden in:", r), n.secret;
+            return this._log("Info", "Gültiges MSAL Token gefunden in:", i), r.secret;
           } else
             this._log(
               "Debug",
               "Item ignoriert (falscher Typ/Struktur):",
-              r,
+              i,
               "credentialType:",
-              n == null ? void 0 : n.credentialType,
+              r == null ? void 0 : r.credentialType,
               "hasSecret:",
-              d,
+              c,
               "tokenType:",
-              n == null ? void 0 : n.tokenType,
+              r == null ? void 0 : r.tokenType,
               "FULL_OBJECT:",
-              n
+              r
               // Log the full object to see structure
             );
-        } catch (a) {
-          this._log("Debug", "Parsing Fehler für Key:", r, a);
+        } catch (l) {
+          this._log("Debug", "Parsing Fehler für Key:", i, l);
           continue;
         }
       }
@@ -151,43 +175,48 @@ class g {
   /**
    * Initialer Merge: Union aus Server und Lokal
    */
-  async performInitialSync() {
-    const e = localStorage.getItem(this.targetKey) || "", t = e ? e.split(",").filter((n) => n.trim()) : [];
-    this._log("Info", "Starte Initial-Sync. Lokal:", t);
-    const i = await this.fetchServerList(), r = t.filter((n) => !i.includes(n));
-    r.length > 0 && (this._log("Info", "Pushe lokale Items zum Server (Batch):", r), await this.processBatch(r, "POST"));
-    const s = /* @__PURE__ */ new Set([...t, ...i]), a = Array.from(s).join(",");
-    a !== e && this.updateLocalStorageSilent(a), this.lastKnownValue = a;
+  async performInitialSync(e = this._generation) {
+    const t = () => !this._destroyed && e === this._generation, n = localStorage.getItem(this.targetKey) || "", i = n ? n.split(",").filter((o) => o.trim()) : [];
+    this._log("Info", "Starte Initial-Sync. Lokal:", i);
+    const s = await this.fetchServerList();
+    if (!t()) return;
+    const l = i.filter((o) => !s.includes(o));
+    if (l.length > 0 && (this._log("Info", "Pushe lokale Items zum Server (Batch):", l), await this.processBatch(l, "POST"), !t()))
+      return;
+    const r = /* @__PURE__ */ new Set([...i, ...s]), a = Array.from(r).join(",");
+    a !== n && this.updateLocalStorageSilent(a), this.lastKnownValue = a;
   }
   startPolling() {
-    this._log("Info", `Polling gestartet (${this.intervalMs}ms)`), this.pollerId = setInterval(() => {
+    this._destroyed || this.pollerId !== null || (this._log("Info", `Polling gestartet (${this.intervalMs}ms)`), this.pollerId = setInterval(() => {
       document.hidden || this.isSyncing || this.checkForChanges();
-    }, this.intervalMs);
+    }, this.intervalMs));
   }
   async checkForChanges() {
-    var r;
-    const e = localStorage.getItem(this.targetKey) || "";
-    if (e === this.lastKnownValue) return;
-    const t = localStorage.getItem("watchlist_logout_pending");
-    if (t && Date.now() - parseInt(t, 10) < 5e3 && !e) {
-      this._log("Info", "Logout Clean-up detected. Ignoring empty list sync to server."), this.lastKnownValue = e;
+    var l;
+    if (this._destroyed || this.pollerId === null || this.isSyncing) return;
+    const e = this._generation, t = () => !this._destroyed && e === this._generation, n = localStorage.getItem(this.targetKey) || "";
+    if (n === this.lastKnownValue) return;
+    const i = localStorage.getItem("watchlist_logout_pending");
+    if (i && Date.now() - parseInt(i, 10) < 5e3 && !n) {
+      this._log("Info", "Logout Clean-up detected. Ignoring empty list sync to server."), this.lastKnownValue = n;
       return;
     }
-    if (await this.getToken()) {
-      if (!e && this.lastKnownValue) {
-        const s = this.defaultProviderId !== void 0 && this.preventEmptyDelete;
+    if (!(!await this.getToken() || !t())) {
+      if (!n && this.lastKnownValue) {
+        const r = this.defaultProviderId !== void 0 && this.preventEmptyDelete;
         this.logLocalWipe && console.warn("[WatchlistSyncer] ⚠️ Local wipe detected", {
           targetKey: this.targetKey,
           providerId: this.defaultProviderId,
-          lastKnownValueLength: ((r = this.lastKnownValue) == null ? void 0 : r.length) || 0,
+          lastKnownValueLength: ((l = this.lastKnownValue) == null ? void 0 : l.length) || 0,
           preventEmptyDelete: this.preventEmptyDelete
         });
         try {
           const a = await this.fetchServerList();
+          if (!t()) return;
           if (a.length > 0) {
-            const n = a.join(",");
-            this._log("Warn", "Local watchlist emptied unexpectedly; restoring from server."), this.updateLocalStorageSilent(n), this.lastKnownValue = n;
-          } else s ? (this._log("Warn", "Local empty with providerId set; refusing delete to avoid cross-provider wipe."), this.lastKnownValue = e) : (this._log("Info", "Server list already empty; keeping local empty without delete sync."), this.lastKnownValue = e);
+            const o = a.join(",");
+            this._log("Warn", "Local watchlist emptied unexpectedly; restoring from server."), this.updateLocalStorageSilent(o), this.lastKnownValue = o;
+          } else r ? (this._log("Warn", "Local empty with providerId set; refusing delete to avoid cross-provider wipe."), this.lastKnownValue = n) : (this._log("Info", "Server list already empty; keeping local empty without delete sync."), this.lastKnownValue = n);
           return;
         } catch (a) {
           this._log("Error", "Server verify failed; skipping delete to avoid data loss", a);
@@ -196,22 +225,24 @@ class g {
       }
       this.isSyncing = !0;
       try {
-        const s = this.lastKnownValue ? this.lastKnownValue.split(",").filter((l) => l) : [], a = e ? e.split(",").filter((l) => l) : [];
-        let n = s.filter((l) => !a.includes(l));
-        if (n.length > 0 && this.guardDeleteByServer && this.defaultProviderId !== void 0)
+        const r = this.lastKnownValue ? this.lastKnownValue.split(",").filter((d) => d) : [], a = n ? n.split(",").filter((d) => d) : [];
+        let o = r.filter((d) => !a.includes(d));
+        if (o.length > 0 && this.guardDeleteByServer && this.defaultProviderId !== void 0)
           try {
-            const l = await this.fetchServerList();
-            n = n.filter((d) => l.includes(d)), n.length === 0 && this._log("Warn", "Delete-Guard: Keine Items im Server-Set; Delete übersprungen.");
-          } catch (l) {
-            this._log("Error", "Delete-Guard: Serverprüfung fehlgeschlagen; Delete übersprungen.", l), n = [];
+            const d = await this.fetchServerList();
+            if (!t()) return;
+            o = o.filter((u) => d.includes(u)), o.length === 0 && this._log("Warn", "Delete-Guard: Keine Items im Server-Set; Delete übersprungen.");
+          } catch (d) {
+            this._log("Error", "Delete-Guard: Serverprüfung fehlgeschlagen; Delete übersprungen.", d), o = [];
           }
-        n.length > 0 && (this._log("Info", "Löschung erkannt:", n), await this.processBatch(n, "DELETE"));
-        const c = a.filter((l) => !s.includes(l));
-        c.length > 0 && (this._log("Info", "Hinzufügung erkannt:", c), await this.processBatch(c, "POST")), this.lastKnownValue = e;
-      } catch (s) {
-        this._log("Error", "Polling Zyklus Fehler", s);
+        if (o.length > 0 && (this._log("Info", "Löschung erkannt:", o), await this.processBatch(o, "DELETE"), !t()))
+          return;
+        const c = a.filter((d) => !r.includes(d));
+        c.length > 0 && (this._log("Info", "Hinzufügung erkannt:", c), await this.processBatch(c, "POST")), t() && (this.lastKnownValue = n);
+      } catch (r) {
+        this._log("Error", "Polling Zyklus Fehler", r);
       } finally {
-        this.isSyncing = !1;
+        t() && (this.isSyncing = !1);
       }
     }
   }
@@ -219,90 +250,104 @@ class g {
     !e || e.length === 0 || (t === "POST" ? await this.sendBatchPost(e) : t === "DELETE" && await this.sendParallelDelete(e));
   }
   async sendBatchPost(e) {
-    const t = await this.getToken();
-    if (!t) throw new Error("No Token");
-    const i = e.join(","), r = `${this.baseUrl}/Watchlist?tripCodes=${i}&providerId=${this.defaultProviderId}`, s = await fetch(r, {
+    const t = this._generation, n = await this.getToken();
+    if (!n || this._destroyed || t !== this._generation) throw new Error("Sync stopped or token unavailable");
+    const i = e.join(","), s = `${this.baseUrl}/Watchlist?tripCodes=${i}&providerId=${this.defaultProviderId}`, l = await fetch(s, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${t}`,
+        Authorization: `Bearer ${n}`,
         Accept: "application/json"
       },
       keepalive: !0
     });
-    if (!s.ok)
-      throw new Error(`Batch POST fehlgeschlagen: ${s.status}`);
+    if (!l.ok)
+      throw new Error(`Batch POST fehlgeschlagen: ${l.status}`);
     this._log("Info", `Batch POST OK für ${e.length} Items.`);
   }
   async sendParallelDelete(e) {
-    const t = e.map((r) => this.sendSingleDelete(r));
-    (await Promise.allSettled(t)).forEach((r, s) => {
-      r.status === "rejected" && this._log("Error", `DELETE fehlgeschlagen für ${e[s]}`, r.reason);
+    const t = e.map((i) => this.sendSingleDelete(i));
+    (await Promise.allSettled(t)).forEach((i, s) => {
+      i.status === "rejected" && this._log("Error", `DELETE fehlgeschlagen für ${e[s]}`, i.reason);
     });
   }
   async sendSingleDelete(e) {
-    const t = await this.getToken();
-    if (!t) throw new Error("No Token");
-    const i = `${this.baseUrl}/Watchlist/${e}`, r = await fetch(i, {
+    const t = this._generation, n = await this.getToken();
+    if (!n || this._destroyed || t !== this._generation) throw new Error("Sync stopped or token unavailable");
+    const i = `${this.baseUrl}/Watchlist/${e}`, s = await fetch(i, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${t}`,
+        Authorization: `Bearer ${n}`,
         Accept: "application/json"
       },
       keepalive: !0
     });
-    if (!r.ok) {
-      if (r.status === 404) return;
-      throw new Error(`${r.status} ${r.statusText}`);
+    if (!s.ok) {
+      if (s.status === 404) return;
+      throw new Error(`${s.status} ${s.statusText}`);
     }
   }
   async fetchServerList() {
-    const e = await this.getToken(), t = await fetch(`${this.baseUrl}/Watchlist`, {
+    const e = this._generation, t = await this.getToken();
+    if (!t || this._destroyed || e !== this._generation) throw new Error("Sync stopped or token unavailable");
+    const n = await fetch(`${this.baseUrl}/Watchlist`, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${e}`,
+        Authorization: `Bearer ${t}`,
         Accept: "application/json"
       }
     });
-    if (!t.ok) throw new Error(`GET fehlgeschlagen: ${t.status}`);
-    const i = await t.json();
-    return i && Array.isArray(i.watchlist) ? i.watchlist.filter((r) => this.defaultProviderId !== void 0 ? r.providerId === void 0 || r.providerId === null ? !1 : Number(r.providerId) === Number(this.defaultProviderId) : !0).map((r) => r.tripCode).filter((r) => r) : [];
+    if (!n.ok) throw new Error(`GET fehlgeschlagen: ${n.status}`);
+    const i = await n.json();
+    return i && Array.isArray(i.watchlist) ? i.watchlist.filter((s) => this.defaultProviderId !== void 0 ? s.providerId === void 0 || s.providerId === null ? !1 : Number(s.providerId) === Number(this.defaultProviderId) : !0).map((s) => s.tripCode).filter((s) => s) : [];
   }
   updateLocalStorageSilent(e) {
     localStorage.getItem(this.targetKey) !== e && (window.removeEventListener("storage", this.handleStorageEvent), localStorage.setItem(this.targetKey, e), window.addEventListener("storage", this.handleStorageEvent), this._dispatchGlobalEvent(e));
   }
   _dispatchGlobalEvent(e) {
     if (typeof window > "u") return;
-    const t = e ? e.split(",").filter((r) => r).map((r) => r.trim()) : [], i = new CustomEvent("twerenbold:watchlist-updated", {
+    const t = e ? e.split(",").filter((i) => i).map((i) => i.trim()) : [], n = new CustomEvent("twerenbold:watchlist-updated", {
       detail: {
         tripCodes: t,
         source: "watchlist-syncer"
       }
     });
-    window.dispatchEvent(i), this._log("Info", "Dispatched twerenbold:watchlist-updated", t);
+    window.dispatchEvent(n), this._log("Info", "Dispatched twerenbold:watchlist-updated", t);
   }
   async _loadThemeConfig() {
-    var e, t, i, r, s, a, n, c, l;
+    var e;
     try {
-      const d = this._resolveConfigUrl();
-      if (!d) return;
-      const u = await import(d);
-      if (u && u.getConfigFor) {
-        let h = localStorage.getItem("selectedTheme") || "twerenbold";
-        const o = u.getConfigFor("live", h);
-        (e = o == null ? void 0 : o.watchlist) != null && e.targetKey && (this.targetKey = o.watchlist.targetKey, this._log("Info", `TargetKey aus Theme '${h}' übernommen:`, this.targetKey)), ((t = o == null ? void 0 : o.watchlist) == null ? void 0 : t.providerId) !== void 0 && (this.defaultProviderId = o.watchlist.providerId, this._log("Info", `ProviderId aus Theme '${h}' übernommen:`, this.defaultProviderId)), (i = o == null ? void 0 : o.watchlist) != null && i.baseUrl && (this.watchlistBaseUrl = o.watchlist.baseUrl, this._log("Info", `BaseUrl aus Theme '${h}' übernommen:`, this.watchlistBaseUrl)), (r = o == null ? void 0 : o.watchlist) != null && r.tokenKey && (this.tokenKey = o.watchlist.tokenKey, this._log("Info", `TokenKey aus Theme '${h}' übernommen:`, this.tokenKey)), (s = o == null ? void 0 : o.watchlist) != null && s.interval && (this.intervalMs = o.watchlist.interval, this._log("Info", `Interval aus Theme '${h}' übernommen:`, this.intervalMs)), ((a = o == null ? void 0 : o.watchlist) == null ? void 0 : a.debug) !== void 0 && (this.debug = o.watchlist.debug, this._log("Info", `Debug aus Theme '${h}' übernommen:`, this.debug)), ((n = o == null ? void 0 : o.watchlist) == null ? void 0 : n.preventEmptyDelete) !== void 0 && (this.preventEmptyDelete = o.watchlist.preventEmptyDelete, this._log("Info", `preventEmptyDelete aus Theme '${h}' übernommen:`, this.preventEmptyDelete)), ((c = o == null ? void 0 : o.watchlist) == null ? void 0 : c.logLocalWipe) !== void 0 && (this.logLocalWipe = o.watchlist.logLocalWipe, this._log("Info", `logLocalWipe aus Theme '${h}' übernommen:`, this.logLocalWipe)), ((l = o == null ? void 0 : o.watchlist) == null ? void 0 : l.guardDeleteByServer) !== void 0 && (this.guardDeleteByServer = o.watchlist.guardDeleteByServer, this._log("Info", `guardDeleteByServer aus Theme '${h}' übernommen:`, this.guardDeleteByServer));
+      const t = this._resolveConfigUrl();
+      if (!t) return;
+      const n = await import(t);
+      if (n && n.getConfigFor) {
+        const i = this.config.theme || localStorage.getItem("selectedTheme") || "twerenbold", s = (e = n.getConfigFor("live", i)) == null ? void 0 : e.watchlist, l = {
+          targetKey: "targetKey",
+          defaultProviderId: "providerId",
+          tokenKey: "tokenKey",
+          intervalMs: "interval",
+          debug: "debug",
+          preventEmptyDelete: "preventEmptyDelete",
+          logLocalWipe: "logLocalWipe",
+          guardDeleteByServer: "guardDeleteByServer"
+        };
+        for (const [r, a] of Object.entries(l)) {
+          const o = r === "intervalMs" ? "interval" : r;
+          this.config[o] == null && (s == null ? void 0 : s[a]) !== void 0 && (this[r] = s[a]);
+        }
+        this.watchlistBaseUrl = (s == null ? void 0 : s.baseUrl) || null;
       }
-    } catch (d) {
-      this._log("Debug", "Konnte Theme-Config nicht laden (Ignore wenn Standalone):", d);
+    } catch (t) {
+      this._log("Debug", "Konnte Theme-Config nicht laden (Ignore wenn Standalone):", t);
     }
   }
   _resolveConfigUrl() {
-    var i;
+    var n;
     let e = document.currentScript;
-    e || (e = document.querySelector('script[src*="watchlist-syncer.js"]'));
-    const t = (i = e == null ? void 0 : e.getAttribute) == null ? void 0 : i.call(e, "src");
+    e || (e = document.querySelector('script[src*="watchlist-syncer.js"], script[src*="watchlist-syncer.bundle.js"]'));
+    const t = (n = e == null ? void 0 : e.getAttribute) == null ? void 0 : n.call(e, "src");
     if (!t) return null;
     try {
-      return new URL("config/component-config.js", t).toString();
+      return new URL("config/component-config.js", new URL(t, document.baseURI)).toString();
     } catch {
       return null;
     }
@@ -315,11 +360,11 @@ class g {
     this.debug && console.log(`[WatchlistSyncer][${e}]`, ...t);
   }
   destroy() {
-    this.pollerId && (clearInterval(this.pollerId), this.pollerId = null), window.removeEventListener("storage", this.handleStorageEvent), document.removeEventListener("favorites-updated", this.handleFavoritesUpdated), window.removeEventListener("twerenbold:post-logout", this.handleLogout), this._log("Info", "Destroyed and event listeners removed.");
+    this._destroyed = !0, this.stopSync(), window.removeEventListener("auth-changed", this.handleAuthChanged), window.removeEventListener("storage", this.handleStorageEvent), document.removeEventListener("favorites-updated", this.handleFavoritesUpdated), window.removeEventListener("twerenbold:post-logout", this.handleLogout), this._log("Info", "Destroyed and event listeners removed.");
   }
 }
-typeof window < "u" && (window.WatchlistSyncer = g);
-const f = g.getScriptAttributes();
-f.baseUrl && (document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", () => {
-  console.log("[WatchlistSyncer] Auto-Init (via DOMContentLoaded)"), window._watchlistSyncer = new g(f);
-}) : (console.log("[WatchlistSyncer] Auto-Init (Immediate)"), window._watchlistSyncer = new g(f)));
+typeof window < "u" && (window.WatchlistSyncer = h);
+const g = h.getScriptAttributes();
+g.baseUrl && document.currentScript && (document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", () => {
+  console.log("[WatchlistSyncer] Auto-Init (via DOMContentLoaded)"), window._watchlistSyncer || (window._watchlistSyncer = new h(g));
+}) : (console.log("[WatchlistSyncer] Auto-Init (Immediate)"), window._watchlistSyncer || (window._watchlistSyncer = new h(g))));
