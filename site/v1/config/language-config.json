@@ -30,16 +30,16 @@
     "loadingFailedText": "Beim Laden der Daten ist ein Fehler aufgetreten.",
     "tableDate": "Abreise",
     "autoFillerLoginBenefitTitle": "Ihr persönliches Kundenkonto",
-    "autoFillerLoginBenefitSubtitle": "Behalten Sie alles im Blick und sparen Sie Zeit bei jeder Buchung.",
+    "autoFillerLoginBenefitSubtitle": "Das Kundenkonto ist bei allen Firmen der Twerenbold Reisen Gruppe identisch: Twerenbold Reisen, Excellence Cruises, Reisebüro Mittelthurgau, Vögele Reisen, Imbach Reisen",
     "autoFillerLoginBenefitDescription": "Auch wenn Sie schon bei uns gebucht haben: Bitte erstellen Sie einmalig ein Konto. So können wir Ihre Daten sicher für Sie speichern.",
     "autoFillerLoginBenefit1": "Ihre Daten sind für zukünftige Buchungen bereits hinterlegt",
-    "autoFillerLoginBenefit2": "Mitreisende einfach verwalten",
-    "autoFillerLoginBenefit3": "Alle gebuchten Reisen jederzeit einsehen",
-    "autoFillerLoginBenefit4": "Sicherer und bequemer Zugriff",
-    "autoFillerLoginBenefit5": "Merkzettel mit Ihren Lieblingsreisen",
+    "autoFillerLoginBenefit2": "Sicherer und bequemer Zugriff",
+    "autoFillerLoginBenefit3": "Mitreisende einfach verwalten",
+    "autoFillerLoginBenefit4": "Alle gebuchten Reisen jederzeit einsehen",
+    "autoFillerLoginBenefit5": "Einfache Übersicht Ihrer Newsletter",
     "autoFillerLoginButton": "Jetzt anmelden",
     "autoFillerRegisterButton": "Konto erstellen",
-    "autoFillerDismissButton": "Später",
+    "autoFillerDismissButton": "Weiter ohne Konto",
     "register": "Registrieren",
     "settingsSavedDescription": "Einstellungen wurden gespeichert",
     "overlayTitle": "Mein Konto",
@@ -66,7 +66,8 @@
     "overlayLoadingFlow": "Flow wird gestartet…",
     "overlayLoadingRedirect": "Weiterleitung zur Microsoft-Anmeldung…",
     "overlayHelpText": "Sie benötigen Unterstützung?",
-    "overlaySupportEmail": "support@twerenbold.ch"
+    "overlaySupportEmail": "support@twerenbold.ch",
+    "autoFillerLoginBenefit6": "Merkzettel mit Ihren Lieblingsreisen"
   },
   "twerenbold": {
     "account": {
@@ -262,16 +263,16 @@
   },
   "voegele": {
     "autoFillerLoginBenefitTitle": "Ihr persönliches Kundenkonto",
-    "autoFillerLoginBenefitSubtitle": "Behalten Sie alles im Blick und sparen Sie Zeit bei jeder Buchung.",
+    "autoFillerLoginBenefitSubtitle": "Das Kundenkonto ist bei allen Firmen der Twerenbold Reisen Gruppe identisch: Twerenbold Reisen, Excellence Cruises, Reisebüro Mittelthurgau, Vögele Reisen, Imbach Reisen",
     "autoFillerLoginBenefitDescription": "Auch wenn Sie schon bei uns gebucht haben: Bitte erstellen Sie einmalig ein Konto. So können wir Ihre Daten sicher für Sie speichern.",
     "autoFillerLoginBenefit1": "Ihre Daten sind für zukünftige Buchungen bereits hinterlegt",
-    "autoFillerLoginBenefit2": "Mitreisende einfach verwalten",
-    "autoFillerLoginBenefit3": "Alle gebuchten Reisen jederzeit einsehen",
-    "autoFillerLoginBenefit4": "Sicherer und bequemer Zugriff",
-    "autoFillerLoginBenefit5": "Merkzettel mit Ihren Lieblingsreisen",
+    "autoFillerLoginBenefit2": "Sicherer und bequemer Zugriff",
+    "autoFillerLoginBenefit3": "Mitreisende einfach verwalten",
+    "autoFillerLoginBenefit4": "Alle gebuchten Reisen jederzeit einsehen",
+    "autoFillerLoginBenefit5": "Einfache Übersicht Ihrer Newsletter",
     "autoFillerLoginButton": "Jetzt anmelden",
     "autoFillerRegisterButton": "Konto erstellen",
-    "autoFillerDismissButton": "Später",
+    "autoFillerDismissButton": "Weiter ohne Konto",
     "common": {
       "overlayLoginTitle": "Ich habe bereits ein Kundenkonto",
       "overlayLoginText": "Melden Sie sich mit ihrem bestehenden Kundenkonto an und nutzen Sie alle Vorteile.",
@@ -303,7 +304,8 @@
     "overview": {
       "welcomeMessage": "Guten Tag",
       "viewMerkliste": "Merkzettel"
-    }
+    },
+    "autoFillerLoginBenefit6": "Merkzettel mit Ihren Lieblingsreisen"
   },
   "imbach": {
     "account": {},

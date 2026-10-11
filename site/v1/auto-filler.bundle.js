@@ -1,8 +1,26 @@
 var j = Object.defineProperty;
-var z = (S, t, e) => t in S ? j(S, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : S[t] = e;
-var k = (S, t, e) => z(S, typeof t != "symbol" ? t + "" : t, e);
-import { f as E, s as K, r as H, l as Q, u as q, q as R, c as x } from "./scroll-lock-Cdi8R-Hj.js";
-const $ = [
+var z = (y, t, e) => t in y ? j(y, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : y[t] = e;
+var P = (y, t, e) => z(y, typeof t != "symbol" ? t + "" : t, e);
+import { f as J, s as K, r as H, l as Q, u as q, q as G, c as E } from "./scroll-lock-Cdi8R-Hj.js";
+const x = "twerenbold_login_benefit_shown", $ = "twerenbold:login-benefit-popup:shown-at";
+function tt(y = document, t) {
+  try {
+    (t || window.localStorage).removeItem($);
+  } catch {
+  }
+  try {
+    return y.cookie.split(";").some((e) => e.trim() === `${x}=1`);
+  } catch {
+    return !1;
+  }
+}
+function et(y = document) {
+  try {
+    y.cookie = `${x}=1; Path=/; SameSite=Lax; Secure`;
+  } catch {
+  }
+}
+const rt = [
   "https://twerenbold.ch",
   "https://www.twerenbold.ch",
   "https://imbach.ch",
@@ -27,8 +45,8 @@ const $ = [
   "https://xitami.github.io",
   "https://wispy-butterfly-157811.1wp.site",
   "https://voegelereisen-ibe.stg.tripbuilder.app"
-], v = (S) => !S || typeof S != "string" ? !1 : !!($.includes(S) || S.startsWith("http://localhost:") || S.startsWith("http://127.0.0.1:"));
-class F extends E {
+], A = (y) => !y || typeof y != "string" ? !1 : !!(rt.includes(y) || y.startsWith("http://localhost:") || y.startsWith("http://127.0.0.1:"));
+class Y extends J {
   constructor() {
     super(), this.visible = !1, this.languageConfig = null, this.brand = "twerenbold";
   }
@@ -89,19 +107,13 @@ class F extends E {
   }
   _getDefaultTexts() {
     return {
-      title: "Reisen bequemer buchen",
-      subtitle: "Entdecken Sie die Vorteile eines Kundenkontos",
-      description: "Mit einem Kundenkonto können Sie Ihre Reisedaten automatisch ausfüllen lassen und Zeit sparen.",
-      benefits: [
-        "Sicheres Login",
-        "Verwalten Ihrer Personalien und Reisenden",
-        "Zugriff auf Ihre gebuchten Reisen",
-        "Newsletter-Abonnements",
-        "Merkzettel Ihrer Lieblingsreisen"
-      ],
+      title: "Ihr persönliches Kundenkonto",
+      subtitle: "Das Kundenkonto ist bei allen Firmen der Twerenbold Reisen Gruppe identisch: Twerenbold Reisen, Excellence Cruises, Reisebüro Mittelthurgau, Vögele Reisen, Imbach Reisen",
+      description: "Auch wenn Sie schon bei uns gebucht haben: Bitte erstellen Sie einmalig ein Konto. So können wir Ihre Daten sicher für Sie speichern.",
+      benefits: ["Ihre Daten sind für zukünftige Buchungen bereits hinterlegt", "Sicherer und bequemer Zugriff", "Mitreisende einfach verwalten", "Alle gebuchten Reisen jederzeit einsehen", "Einfache Übersicht Ihrer Newsletter", "Merkzettel mit Ihren Lieblingsreisen"],
       loginButton: "Jetzt anmelden",
       registerButton: "Konto erstellen",
-      dismissButton: "Später"
+      dismissButton: "Weiter ohne Konto"
     };
   }
   show() {
@@ -174,9 +186,9 @@ class F extends E {
   }
   render() {
     if (!this.visible)
-      return R``;
+      return G``;
     const t = this._getTextConfig();
-    return R`
+    return G`
       <dialog id="popup-dialog" class="popup-dialog" @cancel=${(e) => {
       e.preventDefault(), this._handleDismiss();
     }} @click=${(e) => {
@@ -198,7 +210,7 @@ class F extends E {
           <div class="popup-content">
             <p class="description">${t.description}</p>
             <ul class="benefits">
-              ${t.benefits.map((e) => R`
+              ${t.benefits.map((e) => G`
                 <li class="benefit-item">
                   <span class="benefit-icon">✓</span>
                   <span>${e}</span>
@@ -222,12 +234,12 @@ class F extends E {
     `;
   }
 }
-k(F, "properties", {
+P(Y, "properties", {
   visible: { type: Boolean, reflect: !0 },
   theme: { type: String, reflect: !0 },
   languageConfig: { type: Object },
   brand: { type: String }
-}), k(F, "styles", [K, H`
+}), P(Y, "styles", [K, H`
     :host {
       display: block;
       font-family: var(--font-family, var(--twerenbold-font-family, 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif));
@@ -404,6 +416,13 @@ k(F, "properties", {
         flex-direction: column;
       }
 
+      .popup-actions .btn {
+        flex: 0 0 auto;
+        min-width: 0;
+        width: 100%;
+        white-space: normal;
+      }
+
       .btn {
         width: 100%;
         min-width: auto;
@@ -416,16 +435,16 @@ k(F, "properties", {
       }
     }
   `]);
-const D = "login-benefit-popup";
-customElements.get(D) || customElements.define(D, F);
-const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-provider", V = [
+const N = "login-benefit-popup";
+customElements.get(N) || customElements.define(N, Y);
+const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-provider", O = [
   "account-management-modern-component",
   "account-overview-component",
   "account-overview-context-component"
-], W = "app-state-changed", U = 6e3, B = 12, tt = 12e3, et = "twerenbold:auto-filler-data", J = "__twerenboldAutoFiller", A = 3, _ = 2500, rt = [408, 429, 500, 502, 503, 504], G = 5e3, it = "twerenbold:auto-filler:profile", ot = "v1", Y = "twerenbold:login-benefit-popup:shown-at", st = 10080 * 60 * 1e3, nt = 1800 * 1e3, at = 1e3, N = class N extends E {
+], W = "app-state-changed", V = 6e3, U = 12, it = 12e3, ot = "twerenbold:auto-filler-data", B = "__twerenboldAutoFiller", v = 3, _ = 2500, st = [408, 429, 500, 502, 503, 504], R = 5e3, nt = "twerenbold:auto-filler:profile", at = "v1", lt = 1e3, X = class X extends J {
   // Iframe: persistent channel to parent
   constructor() {
-    super(), this.clientId = "", this.authority = "", this.nameSelectors = "", this.firstNameSelectors = "", this.lastNameSelectors = "", this.emailSelectors = "", this.streetSelectors = "", this.citySelectors = "", this.zipSelectors = "", this.countrySelectors = "", this.phoneSelectors = "", this.phoneMobileSelectors = "", this.phoneLandlineSelectors = "", this.phoneSource = "auto", this.phoneLeadingZeroMode = "auto", this.salutationSelectors = "", this.genderSelectors = "", this.birthdateSelectors = "", this.birthdateDaySelectors = "", this.birthdateMonthSelectors = "", this.birthdateYearSelectors = "", this.travelerFirstNameSelectors = "", this.travelerLastNameSelectors = "", this.travelerEmailSelectors = "", this.travelerPhoneSelectors = "", this.travelerSalutationSelectors = "", this.travelerGenderSelectors = "", this.travelerBirthdateSelectors = "", this.travelerBirthdateDaySelectors = "", this.travelerBirthdateMonthSelectors = "", this.travelerBirthdateYearSelectors = "", this.travelerStreetSelectors = "", this.travelerCitySelectors = "", this.travelerZipSelectors = "", this.travelerCountrySelectors = "", this.travelerSelectorInsertAfter = "", this.loginPopupAllowedOrigins = "", this.excludeSelectors = "", this.authComponentSelector = M.join(","), this.appStateSelector = O, this.accountComponentSelector = V.join(","), this.profileEndpoint = "", this.knownAuthorities = "", this.redirectUri = "", this.loginScopes = "", this.loadAccountOnInit = !0, this.useMsalFallback = !1, this.theme = "", this.logger = x("AutoFormFiller"), this.msalInstance = null, this.userData = null, this.travelersData = [], this.observer = null, this.debounceTimer = null, this.touchedFields = /* @__PURE__ */ new Set(), this.observedElements = /* @__PURE__ */ new Set(), this._appProvider = null, this._authComponent = null, this._appStateAttempts = 0, this._authLookupAttempts = 0, this._pendingProfileFetch = null, this._accountComponentObserver = null, this._accountComponents = /* @__PURE__ */ new Set(), this._accountComponentPollers = /* @__PURE__ */ new Map(), this._accountComponentSubscriptions = /* @__PURE__ */ new Map(), this._lastBroadcastSignature = "", this._msalScopes = [], this._msalAccessToken = null, this._profileFetchRetries = 0, this._msalProfileFetchRetries = 0, this._authUserSnapshot = null, this._lastHydratedCacheKey = null, this._activeCacheKey = null, this._msalAccount = null, this._msalSharedInstance = !1, this._loginBenefitPopup = null, this._loginBenefitPopupShown = !1, this._fillableFieldsDetected = !1, this._travelerSelectors = /* @__PURE__ */ new Map(), this._activeTravelerSelections = /* @__PURE__ */ new Map(), this._iframePorts = /* @__PURE__ */ new Map(), this._parentChannel = null, this._parentPortTransferred = !1, this._parentResponded = !1, this._cachedSessionKey = null, this._appStateListener = (t) => this._onAppStateEvent(t), this._authChangedHandler = (t) => this._onAuthComponentChanged(t.detail), this._updateGlobalSnapshot({ profile: null, travelers: [], timestamp: Date.now() });
+    super(), this.clientId = "", this.authority = "", this.nameSelectors = "", this.firstNameSelectors = "", this.lastNameSelectors = "", this.emailSelectors = "", this.streetSelectors = "", this.citySelectors = "", this.zipSelectors = "", this.countrySelectors = "", this.phoneSelectors = "", this.phoneMobileSelectors = "", this.phoneLandlineSelectors = "", this.phoneSource = "auto", this.phoneLeadingZeroMode = "auto", this.salutationSelectors = "", this.genderSelectors = "", this.birthdateSelectors = "", this.birthdateDaySelectors = "", this.birthdateMonthSelectors = "", this.birthdateYearSelectors = "", this.travelerFirstNameSelectors = "", this.travelerLastNameSelectors = "", this.travelerEmailSelectors = "", this.travelerPhoneSelectors = "", this.travelerSalutationSelectors = "", this.travelerGenderSelectors = "", this.travelerBirthdateSelectors = "", this.travelerBirthdateDaySelectors = "", this.travelerBirthdateMonthSelectors = "", this.travelerBirthdateYearSelectors = "", this.travelerStreetSelectors = "", this.travelerCitySelectors = "", this.travelerZipSelectors = "", this.travelerCountrySelectors = "", this.travelerSelectorInsertAfter = "", this.loginPopupAllowedOrigins = "", this.excludeSelectors = "", this.authComponentSelector = D.join(","), this.appStateSelector = M, this.accountComponentSelector = O.join(","), this.profileEndpoint = "", this.knownAuthorities = "", this.redirectUri = "", this.loginScopes = "", this.loadAccountOnInit = !0, this.useMsalFallback = !1, this.theme = "", this.logger = E("AutoFormFiller"), this.msalInstance = null, this.userData = null, this.travelersData = [], this.observer = null, this.debounceTimer = null, this.touchedFields = /* @__PURE__ */ new Set(), this.observedElements = /* @__PURE__ */ new Set(), this._appProvider = null, this._authComponent = null, this._appStateAttempts = 0, this._authLookupAttempts = 0, this._pendingProfileFetch = null, this._accountComponentObserver = null, this._accountComponents = /* @__PURE__ */ new Set(), this._accountComponentPollers = /* @__PURE__ */ new Map(), this._accountComponentSubscriptions = /* @__PURE__ */ new Map(), this._lastBroadcastSignature = "", this._msalScopes = [], this._msalAccessToken = null, this._profileFetchRetries = 0, this._msalProfileFetchRetries = 0, this._authUserSnapshot = null, this._lastHydratedCacheKey = null, this._activeCacheKey = null, this._msalAccount = null, this._msalSharedInstance = !1, this._loginBenefitPopup = null, this._loginBenefitPopupShown = !1, this._fillableFieldsDetected = !1, this._travelerSelectors = /* @__PURE__ */ new Map(), this._activeTravelerSelections = /* @__PURE__ */ new Map(), this._iframePorts = /* @__PURE__ */ new Map(), this._parentChannel = null, this._parentPortTransferred = !1, this._parentResponded = !1, this._cachedSessionKey = null, this._appStateListener = (t) => this._onAppStateEvent(t), this._authChangedHandler = (t) => this._onAuthComponentChanged(t.detail), this._updateGlobalSnapshot({ profile: null, travelers: [], timestamp: Date.now() });
   }
   connectedCallback() {
     super.connectedCallback(), this.loadAccountOnInit = this._normalizeBooleanAttribute("load-account-on-init", this.loadAccountOnInit), this.useMsalFallback = this._normalizeBooleanAttribute("use-msal-fallback", this.useMsalFallback), this.logger.info(`connected: loadAccountOnInit=${this.loadAccountOnInit}, useMsalFallback=${this.useMsalFallback}`), this._setupCrossWindowCommunication(), this._wireAppState(), this._wireAuthComponent(), this._wireAccountComponents(), this._loadProfileFromLocalStorageCache(), setTimeout(() => {
@@ -467,30 +486,11 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
    * Check if popup was already shown in this session
    */
   _wasPopupShownThisSession() {
-    if (this._loginBenefitPopupShown)
-      return !0;
-    if (typeof window < "u" && typeof window.localStorage < "u")
-      try {
-        const t = window.localStorage.getItem(Y);
-        if (t) {
-          const e = Date.now() - parseInt(t, 10), r = this._isRunningInIframe() ? nt : st;
-          if (e < r)
-            return this._loginBenefitPopupShown = !0, !0;
-          window.localStorage.removeItem(Y);
-        }
-      } catch {
-      }
-    return !1;
+    return this._loginBenefitPopupShown || tt();
   }
-  /**
-   * Mark popup as shown — persists with interval in localStorage (30 min for iframe, 1 week otherwise)
-   */
+  /** Remember dismissal for the browser session, without a persistent expiry. */
   _markPopupAsShown() {
-    if (this._loginBenefitPopupShown = !0, typeof window < "u" && typeof window.localStorage < "u")
-      try {
-        window.localStorage.setItem(Y, Date.now().toString());
-      } catch {
-      }
+    this._loginBenefitPopupShown = !0, et();
   }
   /**
    * Show login benefit popup if conditions are met
@@ -620,7 +620,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
     return new Promise((e) => setTimeout(e, t));
   }
   _shouldRetryStatus(t) {
-    return rt.includes(t);
+    return st.includes(t);
   }
   /**
    * Check if running inside an iframe
@@ -658,7 +658,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
         hasTravelers: Array.isArray((m = e.data) == null ? void 0 : m.travelers) && e.data.travelers.length > 0
       });
       const i = e.origin || "", o = i === "null" || i === "", s = ((g = e.data) == null ? void 0 : g.type) && (e.data.type === "twerenbold:auto-filler-data" || e.data.type === "twerenbold:request-auto-filler-data" || e.data.type === "twerenbold:msal-account" || e.data.type === "twerenbold:navigate" || e.data.type === "twerenbold:request-login" || e.data.type === "twerenbold:request-register" || e.data.type === "twerenbold:request-login-popup" || e.data.type === "twerenbold:login-popup-shown"), a = this._getReferrerOrigin();
-      if (!(o && s && v(a)) && !v(e.origin)) {
+      if (!(o && s && A(a)) && !A(e.origin)) {
         r && this.logger.warn("🚫 Rejected message from untrusted origin:", e.origin);
         return;
       }
@@ -671,7 +671,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
             hasTravelersData: Array.isArray(this.travelersData) && this.travelersData.length > 0,
             hasPort: !!(e.ports && e.ports.length > 0)
           });
-          const y = {
+          const S = {
             type: "twerenbold:auto-filler-data",
             profile: this.userData ? this._cloneData(this.userData) : null,
             travelers: Array.isArray(this.travelersData) ? this.travelersData.map((f) => this._cloneData(f)) : [],
@@ -680,7 +680,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
           if (e.ports && e.ports.length > 0)
             try {
               const f = e.ports[0];
-              f.postMessage(y);
+              f.postMessage(S);
               const I = n.iframeOrigin || e.origin || "unknown";
               this._iframePorts.set(I, f), f.onmessage = (L) => {
                 this._handlePortMessageFromIframe(L.data, f);
@@ -691,32 +691,32 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
           if (e.source && typeof e.source.postMessage == "function")
             try {
               const f = this._getTrustedTargetOrigin(e, n);
-              f ? (e.source.postMessage(y, f), this.logger.debug("📤 (parent) sent data to iframe via event.source", { targetOrigin: f })) : this.logger.debug("🚫 (parent) skipped event.source response — no trusted target origin available; iframe will retry via MessageChannel");
+              f ? (e.source.postMessage(S, f), this.logger.debug("📤 (parent) sent data to iframe via event.source", { targetOrigin: f })) : this.logger.debug("🚫 (parent) skipped event.source response — no trusted target origin available; iframe will retry via MessageChannel");
             } catch (f) {
               this.logger.debug("⚠️ Failed to send to iframe via event.source", f);
             }
-          this._broadcastToChildIframes(y);
+          this._broadcastToChildIframes(S);
         }
         return;
       }
       if ((n == null ? void 0 : n.type) === "twerenbold:auto-filler-data" && this._isRunningInIframe() && (this.logger.info("📨 (iframe) received data from parent via postMessage"), this._handleParentData(n)), (n == null ? void 0 : n.type) === "twerenbold:msal-account" && this._isRunningInIframe() && (this.logger.debug("📨 (iframe) received MSAL account from parent"), n.account)) {
-        const y = this._extractDataFromAuthUser(n.account);
-        y && this._mergeUserData(y);
+        const S = this._extractDataFromAuthUser(n.account);
+        S && this._mergeUserData(S);
       }
       if ((n == null ? void 0 : n.type) === "twerenbold:navigate" && !this._isRunningInIframe() && n.url && (this.logger.debug("📨 (parent) received navigate request from iframe:", n.url), window.location.href = n.url), (n == null ? void 0 : n.type) === "twerenbold:request-login" && !this._isRunningInIframe()) {
         this.logger.debug("📨 (parent) received login request from iframe");
-        const y = n.authPageUrl || this.authPageUrl || "/account", f = window.location.href;
+        const S = n.authPageUrl || this.authPageUrl || "/account", f = window.location.href;
         try {
           window.sessionStorage.setItem("twerenbold:login-return-url", f);
-        } catch (P) {
-          this.logger.warn("Failed to store return URL", P);
+        } catch (k) {
+          this.logger.warn("Failed to store return URL", k);
         }
-        const I = y.includes("?") ? "&" : "?", L = encodeURIComponent(f), w = `${y}${I}autoLogin=true&returnUrl=${L}`;
+        const I = S.includes("?") ? "&" : "?", L = encodeURIComponent(f), w = `${S}${I}autoLogin=true&returnUrl=${L}`;
         this.logger.info("➡️ (parent) redirecting to login:", w), window.location.href = w;
       }
       if ((n == null ? void 0 : n.type) === "twerenbold:request-login-popup" && !this._isRunningInIframe()) {
         this.logger.info("📨 (parent) received login-popup request from iframe"), this._fillableFieldsDetected = !0;
-        const y = {
+        const S = {
           hasAuthComponent: !!this._authComponent,
           authComponentAuthenticated: !!(this._authComponent && this._authComponent.isAuthenticated),
           hasUserData: !!(this.userData && Object.keys(this.userData).length > 0),
@@ -725,7 +725,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
           isAuthenticated: this._isUserAuthenticated(),
           popupAlreadyShown: this._wasPopupShownThisSession()
         };
-        if (this.logger.info("📋 (parent) popup decision auth state:", y), !this._isUserAuthenticated() && !this._wasPopupShownThisSession() ? (this.logger.info("📢 (parent) showing login benefit popup now"), this._showLoginBenefitPopup()) : this.logger.info("📨 (parent) popup NOT shown:", y), this._loginBenefitPopupShown) {
+        if (this.logger.info("📋 (parent) popup decision auth state:", S), !this._isUserAuthenticated() && !this._wasPopupShownThisSession() ? (this.logger.info("📢 (parent) showing login benefit popup now"), this._showLoginBenefitPopup()) : this.logger.info("📨 (parent) popup NOT shown:", S), this._loginBenefitPopupShown) {
           const f = {
             type: "twerenbold:login-popup-shown",
             timestamp: Date.now()
@@ -747,13 +747,13 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
       }
       if ((n == null ? void 0 : n.type) === "twerenbold:login-popup-shown" && this._isRunningInIframe() && (this.logger.info("✅ (iframe) received popup confirmation from parent via postMessage — marking as shown"), this._markPopupAsShown()), (n == null ? void 0 : n.type) === "twerenbold:request-register" && !this._isRunningInIframe()) {
         this.logger.debug("📨 (parent) received register request from iframe");
-        const y = n.authPageUrl || this.authPageUrl || "/account", f = window.location.href;
+        const S = n.authPageUrl || this.authPageUrl || "/account", f = window.location.href;
         try {
           window.sessionStorage.setItem("twerenbold:login-return-url", f);
-        } catch (P) {
-          this.logger.warn("Failed to store return URL", P);
+        } catch (k) {
+          this.logger.warn("Failed to store return URL", k);
         }
-        const I = y.includes("?") ? "&" : "?", L = encodeURIComponent(f), w = `${y}${I}autoRegister=true&returnUrl=${L}`;
+        const I = S.includes("?") ? "&" : "?", L = encodeURIComponent(f), w = `${S}${I}autoRegister=true&returnUrl=${L}`;
         this.logger.info("➡️ (parent) redirecting to register:", w), window.location.href = w;
       }
     };
@@ -768,7 +768,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
     if (!(typeof window > "u" || !window.parent || window.parent === window))
       try {
         const t = this._getParentOrigin();
-        if (t && !v(t)) {
+        if (t && !A(t)) {
           this.logger.warn("🚫 Refusing to request data from untrusted parent", t);
           return;
         }
@@ -881,7 +881,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
       }
       try {
         const t = this._getParentOrigin();
-        if (t && !v(t)) {
+        if (t && !A(t)) {
           this.logger.warn("🚫 Refusing to request login popup from untrusted parent", t);
           return;
         }
@@ -924,11 +924,11 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
   }
   _getTrustedTargetOrigin(t, e) {
     const r = (t == null ? void 0 : t.origin) || "";
-    if (v(r)) return r;
+    if (A(r)) return r;
     const i = typeof (e == null ? void 0 : e.iframeOrigin) == "string" ? e.iframeOrigin : "";
-    if (v(i)) return i;
+    if (A(i)) return i;
     const o = this._getReferrerOrigin();
-    return v(o) ? o : "";
+    return A(o) ? o : "";
   }
   /**
    * Setup polling for iframe scenarios where fields are created dynamically
@@ -1049,7 +1049,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
       return null;
     if (this._cachedSessionKey) return this._cachedSessionKey;
     const t = this._getIdentitySignature();
-    return t ? (this._cachedSessionKey = `${it}:${ot}:${t}`, this._cachedSessionKey) : null;
+    return t ? (this._cachedSessionKey = `${nt}:${at}:${t}`, this._cachedSessionKey) : null;
   }
   _hydrateDataFromCache() {
     const t = this._getSessionCacheKey();
@@ -1121,7 +1121,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
   _connectAppStateProvider() {
     if (typeof document > "u")
       return;
-    const t = this.appStateSelector || O;
+    const t = this.appStateSelector || M;
     let e = null;
     try {
       e = document.querySelector(t);
@@ -1133,7 +1133,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
       this._attachAppStateProvider(e);
       return;
     }
-    this._appStateAttempts < B && (this._appStateAttempts += 1, setTimeout(() => this._connectAppStateProvider(), U));
+    this._appStateAttempts < U && (this._appStateAttempts += 1, setTimeout(() => this._connectAppStateProvider(), V));
   }
   _attachAppStateProvider(t) {
     if (!t)
@@ -1224,7 +1224,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
   _resolveAuthComponent() {
     if (typeof document > "u")
       return;
-    const t = (this.authComponentSelector || "").split(",").map((r) => r.trim()).filter(Boolean), e = t.length ? t : M;
+    const t = (this.authComponentSelector || "").split(",").map((r) => r.trim()).filter(Boolean), e = t.length ? t : D;
     for (const r of e) {
       const i = document.querySelector(r);
       if (i) {
@@ -1232,12 +1232,12 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
         return;
       }
     }
-    this._authLookupAttempts < B && (this._authLookupAttempts += 1, setTimeout(() => this._resolveAuthComponent(), U));
+    this._authLookupAttempts < U && (this._authLookupAttempts += 1, setTimeout(() => this._resolveAuthComponent(), V));
   }
   _resolveAccountComponents() {
     if (typeof document > "u")
       return;
-    const t = (this.accountComponentSelector || "").split(",").map((i) => i.trim()).filter(Boolean), e = t.length ? t : V, r = /* @__PURE__ */ new Set();
+    const t = (this.accountComponentSelector || "").split(",").map((i) => i.trim()).filter(Boolean), e = t.length ? t : O, r = /* @__PURE__ */ new Set();
     for (const i of e) {
       let o = [];
       try {
@@ -1304,7 +1304,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
           return;
         }
         this._syncDataFromAccountComponent(t);
-      }, tt);
+      }, it);
       this._accountComponentPollers.set(t, o);
     }
   }
@@ -1441,7 +1441,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
   async _fetchProfileFromEndpoint(t = !1, e = 1) {
     if (!this.profileEndpoint || !this._authComponent)
       return null;
-    if (e > A)
+    if (e > v)
       return this.logger.warn("profile fetch aborted after maximum auth-component retries"), this._profileFetchRetries = 0, null;
     this._profileFetchRetries = e;
     let r = null, i = !1;
@@ -1466,14 +1466,14 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
       this.logger.warn("failed to acquire access token from auth component", o), r = null;
     }
     if (!r)
-      return e < A ? (await this._delay(_ * e), this._fetchProfileFromEndpoint(t, e + 1)) : (this._profileFetchRetries = 0, null);
+      return e < v ? (await this._delay(_ * e), this._fetchProfileFromEndpoint(t, e + 1)) : (this._profileFetchRetries = 0, null);
     try {
-      !i && e === 1 && !t && await this._delay(G);
+      !i && e === 1 && !t && await this._delay(R);
       const o = await fetch(this.profileEndpoint, {
         headers: { Authorization: `Bearer ${r}` }
       });
       if (o.status === 401) {
-        if (!t && typeof this._authComponent.refreshToken == "function" && e < A) {
+        if (!t && typeof this._authComponent.refreshToken == "function" && e < v) {
           try {
             await this._authComponent.refreshToken(!0);
           } catch (a) {
@@ -1484,11 +1484,11 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
         return this.logger.warn("profile endpoint unauthorized after retries, aborting"), this._profileFetchRetries = 0, null;
       }
       if (!o.ok)
-        return this._shouldRetryStatus(o.status) && e < A ? (await this._delay(_ * e), this._fetchProfileFromEndpoint(t, e + 1)) : (this.logger.warn("profile endpoint responded with", o.status), this._profileFetchRetries = 0, null);
+        return this._shouldRetryStatus(o.status) && e < v ? (await this._delay(_ * e), this._fetchProfileFromEndpoint(t, e + 1)) : (this.logger.warn("profile endpoint responded with", o.status), this._profileFetchRetries = 0, null);
       const s = await o.json();
       return this._profileFetchRetries = 0, this._processProfilePayload(s);
     } catch (o) {
-      return e < A ? (await this._delay(_ * e), this._fetchProfileFromEndpoint(t, e + 1)) : (this.logger.warn("fetching profile endpoint failed", o), this._profileFetchRetries = 0, null);
+      return e < v ? (await this._delay(_ * e), this._fetchProfileFromEndpoint(t, e + 1)) : (this.logger.warn("fetching profile endpoint failed", o), this._profileFetchRetries = 0, null);
     }
   }
   _transformProfilePayload(t) {
@@ -1539,22 +1539,22 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
   async _fetchProfileWithToken(t, e = !1, r = 1) {
     if (!this.profileEndpoint || !t)
       return null;
-    if (r > A)
+    if (r > v)
       return this.logger.warn("MSAL fallback profile fetch aborted after maximum retries"), this._msalProfileFetchRetries = 0, null;
     this._msalProfileFetchRetries = r;
     try {
-      r === 1 && !e && await this._delay(G);
+      r === 1 && !e && await this._delay(R);
       const i = await fetch(this.profileEndpoint, {
         headers: { Authorization: `Bearer ${t}` }
       });
       if (i.status === 401) {
-        if (!e && this.msalInstance && r < A)
+        if (!e && this.msalInstance && r < v)
           try {
             const s = this.msalInstance.getActiveAccount() || this.msalInstance.getAllAccounts()[0];
             if (s) {
               const a = this._msalScopes.length ? this._msalScopes : this._resolveMsalScopes(), l = await this.msalInstance.acquireTokenSilent({ scopes: a, account: s, forceRefresh: !0 });
               if (l != null && l.accessToken)
-                return this._msalAccessToken = l.accessToken, await this._delay(_ * r + G), this._fetchProfileWithToken(l.accessToken, !0, r + 1);
+                return this._msalAccessToken = l.accessToken, await this._delay(_ * r + R), this._fetchProfileWithToken(l.accessToken, !0, r + 1);
             }
           } catch (s) {
             this.logger.warn("MSAL token refresh failed", s);
@@ -1562,11 +1562,11 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
         return this.logger.warn("profile endpoint unauthorized after MSAL retries, aborting"), this._msalProfileFetchRetries = 0, null;
       }
       if (!i.ok)
-        return this._shouldRetryStatus(i.status) && r < A ? (await this._delay(_ * r), this._fetchProfileWithToken(t, e, r + 1)) : (this.logger.warn("profile endpoint responded with", i.status), this._msalProfileFetchRetries = 0, null);
+        return this._shouldRetryStatus(i.status) && r < v ? (await this._delay(_ * r), this._fetchProfileWithToken(t, e, r + 1)) : (this.logger.warn("profile endpoint responded with", i.status), this._msalProfileFetchRetries = 0, null);
       const o = await i.json();
       return this._msalProfileFetchRetries = 0, this._processProfilePayload(o);
     } catch (i) {
-      return r < A ? (await this._delay(_ * r), this._fetchProfileWithToken(t, e, r + 1)) : (this.logger.warn("fetching profile via MSAL token failed", i), this._msalProfileFetchRetries = 0, null);
+      return r < v ? (await this._delay(_ * r), this._fetchProfileWithToken(t, e, r + 1)) : (this.logger.warn("fetching profile via MSAL token failed", i), this._msalProfileFetchRetries = 0, null);
     }
   }
   async initializeAndAuth() {
@@ -1852,7 +1852,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
     }
     e && !this._fillableFieldsDetected && (this._fillableFieldsDetected = !0, this._ensureObserver(), setTimeout(() => {
       this._isRunningInIframe() && this._requestLoginPopupFromParent();
-    }, at)), this._showTravelerSelectorsIfNeeded();
+    }, lt)), this._showTravelerSelectorsIfNeeded();
   }
   populateFields() {
     var c, u, h, d;
@@ -1918,7 +1918,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
         { selectors: this.travelerCountrySelectors, value: ((u = r.address) == null ? void 0 : u.country) || ((d = (h = this.userData) == null ? void 0 : h.address) == null ? void 0 : d.country) }
       ];
       for (const g of a) {
-        const { selectors: C, value: Z, alwaysLock: y, alwaysLockReason: f } = g;
+        const { selectors: C, value: Z, alwaysLock: S, alwaysLockReason: f } = g;
         if (!C)
           continue;
         const I = C.replace(/\{i\+1\}/g, String(i + 1)).replace(/\{i\}/g, String(i));
@@ -1928,7 +1928,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
           value: Z,
           foundElement: this.shadowRoot ? this.shadowRoot.querySelector(I) : document.querySelector(I)
         });
-        const L = y || o, w = y ? f : s;
+        const L = S || o, w = S ? f : s;
         this.injectValue(I, Z, { lock: L, lockReason: w });
       }
       r.birthDate && this._populateSplitDate(
@@ -2176,7 +2176,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
     if (e !== this._lastBroadcastSignature) {
       if (this._lastBroadcastSignature = e, this._persistProfileCache(t), typeof document < "u")
         try {
-          const r = new CustomEvent(et, { detail: t });
+          const r = new CustomEvent(ot, { detail: t });
           document.dispatchEvent(r);
         } catch (r) {
           this.logger.warn("failed to dispatch broadcast event", r);
@@ -2215,7 +2215,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
       if (!e || e.startsWith("about:") || e.startsWith("javascript:") || e.startsWith("data:"))
         return null;
       const r = new URL(e, window.location.href);
-      return r.protocol !== "https:" && r.protocol !== "http:" ? null : v(r.origin) ? r.origin : null;
+      return r.protocol !== "https:" && r.protocol !== "http:" ? null : A(r.origin) ? r.origin : null;
     } catch {
       return null;
     }
@@ -2284,7 +2284,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
   _updateGlobalSnapshot(t) {
     if (typeof window > "u")
       return;
-    const e = window[J] || {};
+    const e = window[B] || {};
     e.data = t, e.getProfile = () => {
       var r;
       return ((r = e.data) == null ? void 0 : r.profile) || null;
@@ -2297,7 +2297,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
       } catch (r) {
         this.logger.warn("refresh call failed", r);
       }
-    }, e.version = e.version || "1.0.0", e.source = "auto-form-filler", e.lastUpdated = t.timestamp || Date.now(), window[J] = e;
+    }, e.version = e.version || "1.0.0", e.source = "auto-form-filler", e.lastUpdated = t.timestamp || Date.now(), window[B] = e;
   }
   _cloneData(t) {
     if (typeof structuredClone == "function")
@@ -2613,7 +2613,7 @@ const M = ["oauth-auth-component", "[data-auth-component]"], O = "app-state-prov
     return "";
   }
 };
-N.properties = {
+X.properties = {
   clientId: { type: String, attribute: "client-id" },
   authority: { type: String, attribute: "authority" },
   nameSelectors: { type: String, attribute: "name-selectors" },
@@ -2664,11 +2664,11 @@ N.properties = {
   authPageUrl: { type: String, attribute: "auth-page-url" },
   theme: { type: String, attribute: "theme" }
 };
-let X = N;
+let F = X;
 const T = "auto-form-filler";
-customElements.get(T) || customElements.define(T, X);
+customElements.get(T) || customElements.define(T, F);
 (function() {
-  const S = x("AutoFormFiller");
+  const y = E("AutoFormFiller");
   function t() {
     var h;
     const l = document.currentScript;
@@ -2686,16 +2686,16 @@ customElements.get(T) || customElements.define(T, X);
         return !!((p = d.dataset) != null && p.firstNameSelectors || (b = d.dataset) != null && b.lastNameSelectors || (m = d.dataset) != null && m.emailSelectors);
       }
     );
-    return u || (n.length > 1 && S.warn("Multiple script[data-client-id] tags found; using the first one as fallback."), n[0]);
+    return u || (n.length > 1 && y.warn("Multiple script[data-client-id] tags found; using the first one as fallback."), n[0]);
   }
   const e = t();
   if (!e) {
-    S.error("Script tag with [data-client-id] not found.");
+    y.error("Script tag with [data-client-id] not found.");
     return;
   }
   const r = e.dataset;
   if (!r.clientId || !r.authority) {
-    S.error("data-client-id or data-authority is missing.");
+    y.error("data-client-id or data-authority is missing.");
     return;
   }
   function i() {
