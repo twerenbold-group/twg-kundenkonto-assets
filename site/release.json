@@ -1,5 +1,5 @@
 {
-  "sourceCommit": "d77af563a630aa0e64984709da76bea07212fa5f",
+  "sourceCommit": "a9ae0dab56487b0f6589977cb1422ee5e808f00e",
   "files": [
     {
       "path": "v1/assets/excellence/heart.svg",
@@ -79,15 +79,15 @@
     },
     {
       "path": "v1/twerenbold-account-embed.bundle.js",
-      "sha256": "f664c3ca2aad2a692013fe68fc1f041e0e3f562fdd1ad15b2a0613277be319d9"
+      "sha256": "54baf3dea01c0a3103edbe9952ff520b0ed2d0e7d41bbfe03fb7d7c89a60eaa0"
     },
     {
-      "path": "v1/twerenbold-account-embed.entry-Cptv8sdl.js",
-      "sha256": "54bb9f5480edbb7c02f3575a8b8abb4c49708c9df42f7b6b277b65296f6b16d8"
+      "path": "v1/twerenbold-account-embed.entry-DHafbQwv.js",
+      "sha256": "ed94f828ce93a6d2251e1882caed07b4c113d3ef262c8bded07f01e0dcec5b21"
     },
     {
       "path": "v1/twerenbold-components.bundle.js",
-      "sha256": "8d908f807d19565aac032a7306447ac0bf269125da59a8a7d6dba0bc03f3369b"
+      "sha256": "22e4833b23b5ee8013b0c24d00c7d16ec3de77461ad03f1d33f68043b614e740"
     },
     {
       "path": "v1/twerenbold-design-system.css",
