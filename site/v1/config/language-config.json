@@ -51,14 +51,16 @@
     "overlayRegisterTitle": "Ich benötige ein Kundenkonto",
     "overlayRegisterTexts": [
       "Neu hier? Oder haben Sie bereits bei uns gebucht?",
-      "Bitte erstellen Sie einmalig Ihr persönliches Kundenkonto – auch, wenn Sie bereits Kunde sind.",
+      "Bitte erstellen Sie einmalig Ihr persönliches Kundenkonto, auch wenn Sie bereits Kunde einer oder mehreren Firmen der Twerenbold Reisen Gruppe sind.",
       "So können Sie künftig alle Vorteile des Kundenkontos nutzen."
     ],
     "overlayRegisterBenefits": [
-      "Alle gebuchten Reisen jederzeit einsehen",
-      "Persönliche Daten für Buchungen speichern",
+      "Ihre Daten sind für zukünftige Buchungen bereits hinterlegt",
+      "Sicherer und bequemer Zugriff",
       "Mitreisende einfach verwalten",
-      "Lieblingsreisen merken"
+      "Alle gebuchten Reisen jederzeit einsehen",
+      "Einfache Übersicht Ihrer Newsletter",
+      "Merkzettel mit Ihren Lieblingsreisen"
     ],
     "overlayRegisterButton": "Konto anlegen",
     "overlayLoadingFlow": "Flow wird gestartet…",
@@ -277,14 +279,16 @@
       "overlayRegisterTitle": "Ich benötige ein Kundenkonto",
       "overlayRegisterTexts": [
         "Neu hier? Oder haben Sie bereits bei uns gebucht?",
-        "Bitte erstellen Sie einmalig Ihr persönliches Kundenkonto – auch, wenn Sie bereits Kunde sind.",
+        "Bitte erstellen Sie einmalig Ihr persönliches Kundenkonto, auch wenn Sie bereits Kunde einer oder mehreren Firmen der Twerenbold Reisen Gruppe sind.",
         "So können Sie künftig alle Vorteile des Kundenkontos nutzen."
       ],
       "overlayRegisterBenefits": [
-        "Alle gebuchten Reisen bei der Twerenbold Reisen Gruppe jederzeit einsehen",
-        "Persönliche Daten für Buchungen speichern",
+        "Ihre Daten sind für zukünftige Buchungen bereits hinterlegt",
+        "Sicherer und bequemer Zugriff",
         "Mitreisende einfach verwalten",
-        "Lieblingsreisen merken"
+        "Alle gebuchten Reisen jederzeit einsehen",
+        "Einfache Übersicht Ihrer Newsletter",
+        "Merkzettel mit Ihren Lieblingsreisen"
       ]
     },
     "account": {},
