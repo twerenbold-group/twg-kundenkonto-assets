@@ -10,7 +10,7 @@ class h {
    */
   static getScriptAttributes() {
     let e = document.currentScript;
-    return e || (e = document.querySelector('script[src*="watchlist-syncer.js"], script[src*="watchlist-syncer.bundle.js"]')), console.log("Watchlist Script found:", e), e ? {
+    return e || (e = document.querySelector('script[src*="watchlist-syncer.js"], script[src*="watchlist-syncer.bundle.js"]')), e ? {
       baseUrl: e.getAttribute("data-base-url"),
       targetKey: e.getAttribute("data-target-key"),
       tokenKey: e.getAttribute("data-token-key"),
@@ -357,7 +357,7 @@ class h {
     return this.baseUrl ? this.baseUrl.replace(/\/$/, "") : this.watchlistBaseUrl ? this.watchlistBaseUrl.replace(/\/$/, "") : (e = window == null ? void 0 : window.apiService) != null && e.baseUrl ? window.apiService.baseUrl.replace(/\/$/, "") : this.useDataAttributes && ((t = this._domConfig) != null && t.baseUrl) ? this._domConfig.baseUrl.replace(/\/$/, "") : null;
   }
   _log(e, ...t) {
-    this.debug && console.log(`[WatchlistSyncer][${e}]`, ...t);
+    this.debug && (`${e}`, [...t]);
   }
   destroy() {
     this._destroyed = !0, this.stopSync(), window.removeEventListener("auth-changed", this.handleAuthChanged), window.removeEventListener("storage", this.handleStorageEvent), document.removeEventListener("favorites-updated", this.handleFavoritesUpdated), window.removeEventListener("twerenbold:post-logout", this.handleLogout), this._log("Info", "Destroyed and event listeners removed.");
@@ -366,5 +366,5 @@ class h {
 typeof window < "u" && (window.WatchlistSyncer = h);
 const g = h.getScriptAttributes();
 g.baseUrl && document.currentScript && (document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", () => {
-  console.log("[WatchlistSyncer] Auto-Init (via DOMContentLoaded)"), window._watchlistSyncer || (window._watchlistSyncer = new h(g));
-}) : (console.log("[WatchlistSyncer] Auto-Init (Immediate)"), window._watchlistSyncer || (window._watchlistSyncer = new h(g))));
+  window._watchlistSyncer || (window._watchlistSyncer = new h(g));
+}) : window._watchlistSyncer || (window._watchlistSyncer = new h(g)));

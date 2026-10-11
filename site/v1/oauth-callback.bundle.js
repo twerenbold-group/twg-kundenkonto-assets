@@ -26,7 +26,7 @@ async function d() {
     }, A = window.msal.PublicClientApplication.createPublicClientApplication ? await window.msal.PublicClientApplication.createPublicClientApplication(g) : new window.msal.PublicClientApplication(g);
     typeof A.initialize == "function" && !window.msal.PublicClientApplication.createPublicClientApplication && await A.initialize();
     const I = await A.handleRedirectPromise();
-    I ? console.log(`${Z} ✅ handleRedirectPromise resolved with account`, (C = I.account) == null ? void 0 : C.username) : console.log(`${Z} handleRedirectPromise resolved without response (no auth hash present)`);
+    I ? (`${Z}`, (C = I.account) == null || C.username) : `${Z}`;
   } catch (g) {
     console.error(`${Z} ❌ initialization failed`, g);
   }

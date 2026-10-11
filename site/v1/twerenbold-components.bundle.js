@@ -1,9 +1,9 @@
 var A = Object.defineProperty;
 var _ = (s, e, t) => e in s ? A(s, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : s[e] = t;
 var l = (s, e, t) => _(s, typeof e != "symbol" ? e + "" : e, t);
-import { t as S, w as v, i as N, h as M, l as I, j as L, c as D, v as z, p as E, k as B, f as u } from "./twerenbold-account-embed.entry-BAo7AkgD.js";
-import { A as K, m as V, n as W, o as Y, q as J, C as Z, r as Q, F as X, H as ee, N as te, O as re, T as ie, x as ae, y as oe, z as se } from "./twerenbold-account-embed.entry-BAo7AkgD.js";
-import { f as p, s as k, r as h, q as r, a as O } from "./scroll-lock-Cv6OHDjP.js";
+import { t as S, w as v, i as N, f as M, l as I, s as L, a as D, v as z, p as E, b as B, g as u } from "./twerenbold-account-embed.entry-DLYzghvn.js";
+import { A as K, c as V, d as W, e as Y, h as J, C as Z, j as Q, F as X, H as ee, N as te, O as re, T as ie, k as ae, m as oe, n as se } from "./twerenbold-account-embed.entry-DLYzghvn.js";
+import { f as p, s as k, r as h, q as r, a as O } from "./scroll-lock-Cdi8R-Hj.js";
 class g extends p {
   constructor() {
     super(), this.trip = null, this.travelers = [], this.isLoading = !1, this.errorMessage = "", this.successMessage = "", this.activeTab = "overview", this.apiUrl = "", this.authToken = "", this.canEdit = !1, this.theme = "twerenbold", this.showCheckIn = !1, this.checkInData = null, this._newTraveler = {
@@ -1007,12 +1007,11 @@ class $ extends p {
   }
   async _initializeGlobalApp() {
     try {
-      console.log("🌍 Initializing GLOBAL App State...");
       const e = await I();
       this._updateState({
         languageConfig: e,
         isLanguageLoaded: !0
-      }), L(e), D(this.state.theme), this._restorePersistedState(), this._connectAuthComponent(), this._updateState({ isInitializing: !1 }), console.log("✅ Global App State initialized"), this._provideGlobalContext();
+      }), L(e), D(this.state.theme), this._restorePersistedState(), this._connectAuthComponent(), this._updateState({ isInitializing: !1 }), this._provideGlobalContext();
     } catch (e) {
       console.error("❌ Failed to initialize global app state:", e), this._updateState({
         isInitializing: !1,
@@ -1021,7 +1020,7 @@ class $ extends p {
     }
   }
   _provideGlobalContext() {
-    this.state, this.setTheme.bind(this), this.setApiMode.bind(this), this.setCurrentTrip.bind(this), this.setTrips.bind(this), this.addNotification.bind(this), this.removeNotification.bind(this), this.updatePreferences.bind(this), this.login.bind(this), this.logout.bind(this), z(document.body), console.log("🌍 Global context provided to entire document");
+    this.state, this.setTheme.bind(this), this.setApiMode.bind(this), this.setCurrentTrip.bind(this), this.setTrips.bind(this), this.addNotification.bind(this), this.removeNotification.bind(this), this.updatePreferences.bind(this), this.login.bind(this), this.logout.bind(this), z(document.body);
   }
   // ... alle anderen Methoden wie im normalen AppStateProvider
   // (setTheme, setApiMode, etc. - kopiere sie hierher)
@@ -1053,9 +1052,9 @@ const F = (s) => {
       super(), this._globalAppContext = null;
     }
     connectedCallback() {
-      super.connectedCallback(), console.log(`🌍 ${this.constructor.name} connecting to GLOBAL app context...`), setTimeout(() => {
+      super.connectedCallback(), `${this.constructor.name}`, setTimeout(() => {
         try {
-          this._globalAppContext = B(this, P), this._globalAppContext && this._globalAppContext.state ? (console.log(`✅ ${this.constructor.name} connected to GLOBAL context`), this.requestUpdate()) : console.warn(`⚠️ ${this.constructor.name} could not connect to global context`);
+          this._globalAppContext = B(this, P), this._globalAppContext && this._globalAppContext.state ? (`${this.constructor.name}`, this.requestUpdate()) : console.warn(`⚠️ ${this.constructor.name} could not connect to global context`);
         } catch (t) {
           console.error(`❌ ${this.constructor.name} global context error:`, t);
         }
@@ -1428,7 +1427,7 @@ class T extends v(p) {
         `;
   }
   handleLogin() {
-    console.log("Login clicked - implement OAuth flow here"), this.appActions.addNotification({
+    this.appActions.addNotification({
       type: "info",
       title: "Login",
       message: "Login-Funktionalität würde hier implementiert werden"
