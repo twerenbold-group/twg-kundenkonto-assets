@@ -1,9 +1,13 @@
 {
-  "sourceCommit": "2b99cb5c5e962b4abaf74ff84b6cc253ab2f9d83",
+  "sourceCommit": "9fbfddba79906dd68d2e6ec7ebcac9c3f41793ca",
   "files": [
     {
       "path": "v1/ProtocolUtils-h5d79O2w.js",
       "sha256": "fd9582bdc1faa5641e261b1a6ed2480526ab92b41d50a7248a98ac4b337965b3"
+    },
+    {
+      "path": "v1/account-return-U6AoxntV.js",
+      "sha256": "edcc87725d90d22d18863c4e695486a77a8aa85a5e2a768b9e9ff035d88aa24d"
     },
     {
       "path": "v1/assets/excellence/heart.svg",
@@ -50,10 +54,6 @@
       "sha256": "e488c3da55f4b620c6f45e5e9115e470f118d010d4c0336596dd8a0f9cee4dd1"
     },
     {
-      "path": "v1/index-CgbWBKBt.js",
-      "sha256": "618c6d8db3347ab9e1b8c5231307c3cadd874356a8c249d9a89fdd509a96d1ba"
-    },
-    {
       "path": "v1/index-DYy2IthT.js",
       "sha256": "f4d71c934c3d339bdd77adde195e987c883f3415631abb6e3ca6d4dd76fb867b"
     },
@@ -75,7 +75,7 @@
     },
     {
       "path": "v1/oauth-callback.bundle.js",
-      "sha256": "5970b45a7610a89137bca00efd7717ac0ced30c49e45b0e73e05b9006f0e0459"
+      "sha256": "725fe1c3efb089d77076274243e345a6c9b9aaf0e4f9c605d9bd0c256accdf32"
     },
     {
       "path": "v1/postal-codes.json",
@@ -91,15 +91,15 @@
     },
     {
       "path": "v1/twerenbold-account-embed.bundle.js",
-      "sha256": "9e3686f054e262e9ae1e4947fdfb4cf84c8f6be78fb664aef76d0dd5224d8669"
+      "sha256": "08d44911365994276561b61e311068b1911fa4a19f1195dc424da6e9698e5d74"
     },
     {
-      "path": "v1/twerenbold-account-embed.entry-DM8LTPRM.js",
-      "sha256": "649e4b95646f591695d1ddb9dde30604664ac524863261c18db2af1a6a68441b"
+      "path": "v1/twerenbold-account-embed.entry-BufyHoJY.js",
+      "sha256": "fe7646d5f8caabf6924f991178bf1d798dee908eed27fc4b66a17d7fe9418725"
     },
     {
       "path": "v1/twerenbold-components.bundle.js",
-      "sha256": "dade47ecc8bb179d56dd09488d7923f7146d03016c09163e1fa71b6155cc6c12"
+      "sha256": "2828a0da0f1cace360a58d84f98769c3611fc8f5273d89714e694e224da139f9"
     },
     {
       "path": "v1/twerenbold-design-system.css",
