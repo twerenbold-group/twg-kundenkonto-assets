@@ -1,4 +1,4 @@
-import { k as r } from "./twerenbold-account-embed.entry-jZLy7HqG.js";
+import { k as r } from "./twerenbold-account-embed.entry-e5HNfGa-.js";
 export {
   r as TwerenboldAccountEmbed
 };
