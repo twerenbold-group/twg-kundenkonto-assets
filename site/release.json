@@ -1,5 +1,5 @@
 {
-  "sourceCommit": "11744113cc2a8f8af1c2f5d688bd275a654e019e",
+  "sourceCommit": "2645c0ac29ba0f06cce89b4ec73b47109ecae144",
   "files": [
     {
       "path": "v1/ProtocolUtils-h5d79O2w.js",
@@ -83,15 +83,15 @@
     },
     {
       "path": "v1/twerenbold-account-embed.bundle.js",
-      "sha256": "496521d519a8e4cad8caa37e2ad4829cd4df1976692c8091d2cad2fd8b8b1991"
+      "sha256": "4a52eaa37fa2d2744251441c1271d63919bdfd499aa5e3188e09b74f26675396"
     },
     {
-      "path": "v1/twerenbold-account-embed.entry-B00kcRS2.js",
-      "sha256": "841a093c76d297cfb602d4f470ab0fab225f3515622d15be7346cf91c1363493"
+      "path": "v1/twerenbold-account-embed.entry-jZLy7HqG.js",
+      "sha256": "da24bd981c3e15c474ed275719b864632a8a3a7812f68ac7cd2a6fa88a51a4c1"
     },
     {
       "path": "v1/twerenbold-components.bundle.js",
-      "sha256": "0c638c3aa971ed35c3a87191cf88649ab513fa0858efddcffbacad416724f2e6"
+      "sha256": "5529549c03bb5429b5605858811982f8a9cfae546a3552f525f5c3a9c20d5ef6"
     },
     {
       "path": "v1/twerenbold-design-system.css",
