@@ -1,7 +1,7 @@
 var j = Object.defineProperty;
 var z = (y, t, e) => t in y ? j(y, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : y[t] = e;
 var P = (y, t, e) => z(y, typeof t != "symbol" ? t + "" : t, e);
-import { f as J, s as K, r as H, l as Q, u as q, q as G, c as E } from "./scroll-lock-Cdi8R-Hj.js";
+import { f as J, s as K, r as H, l as Q, u as q, q as R, c as E } from "./scroll-lock-Cdi8R-Hj.js";
 const x = "twerenbold_login_benefit_shown", $ = "twerenbold:login-benefit-popup:shown-at";
 function tt(y = document, t) {
   try {
@@ -186,9 +186,9 @@ class Y extends J {
   }
   render() {
     if (!this.visible)
-      return G``;
+      return R``;
     const t = this._getTextConfig();
-    return G`
+    return R`
       <dialog id="popup-dialog" class="popup-dialog" @cancel=${(e) => {
       e.preventDefault(), this._handleDismiss();
     }} @click=${(e) => {
@@ -210,7 +210,7 @@ class Y extends J {
           <div class="popup-content">
             <p class="description">${t.description}</p>
             <ul class="benefits">
-              ${t.benefits.map((e) => G`
+              ${t.benefits.map((e) => R`
                 <li class="benefit-item">
                   <span class="benefit-icon">✓</span>
                   <span>${e}</span>
@@ -441,7 +441,7 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
   "account-management-modern-component",
   "account-overview-component",
   "account-overview-context-component"
-], W = "app-state-changed", V = 6e3, U = 12, it = 12e3, ot = "twerenbold:auto-filler-data", B = "__twerenboldAutoFiller", v = 3, _ = 2500, st = [408, 429, 500, 502, 503, 504], R = 5e3, nt = "twerenbold:auto-filler:profile", at = "v1", lt = 1e3, X = class X extends J {
+], W = "app-state-changed", V = 6e3, U = 12, it = 12e3, ot = "twerenbold:auto-filler-data", B = "__twerenboldAutoFiller", v = 3, _ = 2500, st = [408, 429, 500, 502, 503, 504], G = 5e3, nt = "twerenbold:auto-filler:profile", at = "v1", lt = 1e3, X = class X extends J {
   // Iframe: persistent channel to parent
   constructor() {
     super(), this.clientId = "", this.authority = "", this.nameSelectors = "", this.firstNameSelectors = "", this.lastNameSelectors = "", this.emailSelectors = "", this.streetSelectors = "", this.citySelectors = "", this.zipSelectors = "", this.countrySelectors = "", this.phoneSelectors = "", this.phoneMobileSelectors = "", this.phoneLandlineSelectors = "", this.phoneSource = "auto", this.phoneLeadingZeroMode = "auto", this.salutationSelectors = "", this.genderSelectors = "", this.birthdateSelectors = "", this.birthdateDaySelectors = "", this.birthdateMonthSelectors = "", this.birthdateYearSelectors = "", this.travelerFirstNameSelectors = "", this.travelerLastNameSelectors = "", this.travelerEmailSelectors = "", this.travelerPhoneSelectors = "", this.travelerSalutationSelectors = "", this.travelerGenderSelectors = "", this.travelerBirthdateSelectors = "", this.travelerBirthdateDaySelectors = "", this.travelerBirthdateMonthSelectors = "", this.travelerBirthdateYearSelectors = "", this.travelerStreetSelectors = "", this.travelerCitySelectors = "", this.travelerZipSelectors = "", this.travelerCountrySelectors = "", this.travelerSelectorInsertAfter = "", this.loginPopupAllowedOrigins = "", this.excludeSelectors = "", this.authComponentSelector = D.join(","), this.appStateSelector = M, this.accountComponentSelector = O.join(","), this.profileEndpoint = "", this.knownAuthorities = "", this.redirectUri = "", this.loginScopes = "", this.loadAccountOnInit = !0, this.useMsalFallback = !1, this.theme = "", this.logger = E("AutoFormFiller"), this.msalInstance = null, this.userData = null, this.travelersData = [], this.observer = null, this.debounceTimer = null, this.touchedFields = /* @__PURE__ */ new Set(), this.observedElements = /* @__PURE__ */ new Set(), this._appProvider = null, this._authComponent = null, this._appStateAttempts = 0, this._authLookupAttempts = 0, this._pendingProfileFetch = null, this._accountComponentObserver = null, this._accountComponents = /* @__PURE__ */ new Set(), this._accountComponentPollers = /* @__PURE__ */ new Map(), this._accountComponentSubscriptions = /* @__PURE__ */ new Map(), this._lastBroadcastSignature = "", this._msalScopes = [], this._msalAccessToken = null, this._profileFetchRetries = 0, this._msalProfileFetchRetries = 0, this._authUserSnapshot = null, this._lastHydratedCacheKey = null, this._activeCacheKey = null, this._msalAccount = null, this._msalSharedInstance = !1, this._loginBenefitPopup = null, this._loginBenefitPopupShown = !1, this._fillableFieldsDetected = !1, this._travelerSelectors = /* @__PURE__ */ new Map(), this._activeTravelerSelections = /* @__PURE__ */ new Map(), this._iframePorts = /* @__PURE__ */ new Map(), this._parentChannel = null, this._parentPortTransferred = !1, this._parentResponded = !1, this._cachedSessionKey = null, this._appStateListener = (t) => this._onAppStateEvent(t), this._authChangedHandler = (t) => this._onAuthComponentChanged(t.detail), this._updateGlobalSnapshot({ profile: null, travelers: [], timestamp: Date.now() });
@@ -643,7 +643,7 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
       hasUserData: !!this.userData
     });
     const t = (e) => {
-      var c, u, h, d, p, b, m, g, C, Z;
+      var c, u, h, d, g, p, f, m, C, Z;
       const r = (u = (c = e.data) == null ? void 0 : c.type) == null ? void 0 : u.startsWith("twerenbold:");
       (h = e.data) != null && h.type && this.logger.debug("📬 ANY message received", {
         type: (d = e.data) == null ? void 0 : d.type,
@@ -651,13 +651,13 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
         isAutoFillerMessage: r,
         isIframe: this._isRunningInIframe()
       }), r && this.logger.debug("📩 Received twerenbold message", {
-        type: (p = e.data) == null ? void 0 : p.type,
+        type: (g = e.data) == null ? void 0 : g.type,
         origin: e.origin,
         isIframe: this._isRunningInIframe(),
-        hasProfile: !!((b = e.data) != null && b.profile),
-        hasTravelers: Array.isArray((m = e.data) == null ? void 0 : m.travelers) && e.data.travelers.length > 0
+        hasProfile: !!((p = e.data) != null && p.profile),
+        hasTravelers: Array.isArray((f = e.data) == null ? void 0 : f.travelers) && e.data.travelers.length > 0
       });
-      const i = e.origin || "", o = i === "null" || i === "", s = ((g = e.data) == null ? void 0 : g.type) && (e.data.type === "twerenbold:auto-filler-data" || e.data.type === "twerenbold:request-auto-filler-data" || e.data.type === "twerenbold:msal-account" || e.data.type === "twerenbold:navigate" || e.data.type === "twerenbold:request-login" || e.data.type === "twerenbold:request-register" || e.data.type === "twerenbold:request-login-popup" || e.data.type === "twerenbold:login-popup-shown"), a = this._getReferrerOrigin();
+      const i = e.origin || "", o = i === "null" || i === "", s = ((m = e.data) == null ? void 0 : m.type) && (e.data.type === "twerenbold:auto-filler-data" || e.data.type === "twerenbold:request-auto-filler-data" || e.data.type === "twerenbold:msal-account" || e.data.type === "twerenbold:navigate" || e.data.type === "twerenbold:request-login" || e.data.type === "twerenbold:request-register" || e.data.type === "twerenbold:request-login-popup" || e.data.type === "twerenbold:login-popup-shown"), a = this._getReferrerOrigin();
       if (!(o && s && A(a)) && !A(e.origin)) {
         r && this.logger.warn("🚫 Rejected message from untrusted origin:", e.origin);
         return;
@@ -674,26 +674,26 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
           const S = {
             type: "twerenbold:auto-filler-data",
             profile: this.userData ? this._cloneData(this.userData) : null,
-            travelers: Array.isArray(this.travelersData) ? this.travelersData.map((f) => this._cloneData(f)) : [],
+            travelers: Array.isArray(this.travelersData) ? this.travelersData.map((b) => this._cloneData(b)) : [],
             timestamp: Date.now()
           };
           if (e.ports && e.ports.length > 0)
             try {
-              const f = e.ports[0];
-              f.postMessage(S);
+              const b = e.ports[0];
+              b.postMessage(S);
               const I = n.iframeOrigin || e.origin || "unknown";
-              this._iframePorts.set(I, f), f.onmessage = (L) => {
-                this._handlePortMessageFromIframe(L.data, f);
+              this._iframePorts.set(I, b), b.onmessage = (L) => {
+                this._handlePortMessageFromIframe(L.data, b);
               }, this.logger.debug("📤 (parent) sent data to iframe via MessageChannel port", { iframeKey: I });
-            } catch (f) {
-              this.logger.warn("⚠️ Failed to send via MessageChannel port", f);
+            } catch (b) {
+              this.logger.warn("⚠️ Failed to send via MessageChannel port", b);
             }
           if (e.source && typeof e.source.postMessage == "function")
             try {
-              const f = this._getTrustedTargetOrigin(e, n);
-              f ? (e.source.postMessage(S, f), this.logger.debug("📤 (parent) sent data to iframe via event.source", { targetOrigin: f })) : this.logger.debug("🚫 (parent) skipped event.source response — no trusted target origin available; iframe will retry via MessageChannel");
-            } catch (f) {
-              this.logger.debug("⚠️ Failed to send to iframe via event.source", f);
+              const b = this._getTrustedTargetOrigin(e, n);
+              b ? (e.source.postMessage(S, b), this.logger.debug("📤 (parent) sent data to iframe via event.source", { targetOrigin: b })) : this.logger.debug("🚫 (parent) skipped event.source response — no trusted target origin available; iframe will retry via MessageChannel");
+            } catch (b) {
+              this.logger.debug("⚠️ Failed to send to iframe via event.source", b);
             }
           this._broadcastToChildIframes(S);
         }
@@ -705,13 +705,13 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
       }
       if ((n == null ? void 0 : n.type) === "twerenbold:navigate" && !this._isRunningInIframe() && n.url && (this.logger.debug("📨 (parent) received navigate request from iframe:", n.url), window.location.href = n.url), (n == null ? void 0 : n.type) === "twerenbold:request-login" && !this._isRunningInIframe()) {
         this.logger.debug("📨 (parent) received login request from iframe");
-        const S = n.authPageUrl || this.authPageUrl || "/account", f = window.location.href;
+        const S = n.authPageUrl || this.authPageUrl || "/account", b = window.location.href;
         try {
-          window.sessionStorage.setItem("twerenbold:login-return-url", f);
+          window.sessionStorage.setItem("twerenbold:login-return-url", b);
         } catch (k) {
           this.logger.warn("Failed to store return URL", k);
         }
-        const I = S.includes("?") ? "&" : "?", L = encodeURIComponent(f), w = `${S}${I}autoLogin=true&returnUrl=${L}`;
+        const I = S.includes("?") ? "&" : "?", L = encodeURIComponent(b), w = `${S}${I}autoLogin=true&returnUrl=${L}`;
         this.logger.info("➡️ (parent) redirecting to login:", w), window.location.href = w;
       }
       if ((n == null ? void 0 : n.type) === "twerenbold:request-login-popup" && !this._isRunningInIframe()) {
@@ -726,20 +726,20 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
           popupAlreadyShown: this._wasPopupShownThisSession()
         };
         if (this.logger.info("📋 (parent) popup decision auth state:", S), !this._isUserAuthenticated() && !this._wasPopupShownThisSession() ? (this.logger.info("📢 (parent) showing login benefit popup now"), this._showLoginBenefitPopup()) : this.logger.info("📨 (parent) popup NOT shown:", S), this._loginBenefitPopupShown) {
-          const f = {
+          const b = {
             type: "twerenbold:login-popup-shown",
             timestamp: Date.now()
           }, I = n.iframeOrigin || e.origin || "unknown", L = this._iframePorts.get(I);
           if (L)
             try {
-              L.postMessage(f), this.logger.debug("📤 (parent) sent popup confirmation via stored port");
+              L.postMessage(b), this.logger.debug("📤 (parent) sent popup confirmation via stored port");
             } catch (w) {
               this.logger.debug("⚠️ Failed to send confirmation via port", w);
             }
           if (e.source && typeof e.source.postMessage == "function")
             try {
               const w = this._getTrustedTargetOrigin(e, n);
-              w ? (e.source.postMessage(f, w), this.logger.debug("📤 (parent) sent popup confirmation via event.source", { targetOrigin: w })) : this.logger.debug("🚫 (parent) skipped event.source confirmation — no trusted target origin");
+              w ? (e.source.postMessage(b, w), this.logger.debug("📤 (parent) sent popup confirmation via event.source", { targetOrigin: w })) : this.logger.debug("🚫 (parent) skipped event.source confirmation — no trusted target origin");
             } catch (w) {
               this.logger.debug("⚠️ Failed to send confirmation via event.source", w);
             }
@@ -747,13 +747,13 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
       }
       if ((n == null ? void 0 : n.type) === "twerenbold:login-popup-shown" && this._isRunningInIframe() && (this.logger.info("✅ (iframe) received popup confirmation from parent via postMessage — marking as shown"), this._markPopupAsShown()), (n == null ? void 0 : n.type) === "twerenbold:request-register" && !this._isRunningInIframe()) {
         this.logger.debug("📨 (parent) received register request from iframe");
-        const S = n.authPageUrl || this.authPageUrl || "/account", f = window.location.href;
+        const S = n.authPageUrl || this.authPageUrl || "/account", b = window.location.href;
         try {
-          window.sessionStorage.setItem("twerenbold:login-return-url", f);
+          window.sessionStorage.setItem("twerenbold:login-return-url", b);
         } catch (k) {
           this.logger.warn("Failed to store return URL", k);
         }
-        const I = S.includes("?") ? "&" : "?", L = encodeURIComponent(f), w = `${S}${I}autoRegister=true&returnUrl=${L}`;
+        const I = S.includes("?") ? "&" : "?", L = encodeURIComponent(b), w = `${S}${I}autoRegister=true&returnUrl=${L}`;
         this.logger.info("➡️ (parent) redirecting to register:", w), window.location.href = w;
       }
     };
@@ -1182,12 +1182,12 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
     e && (e.profile && this._mergeUserData(e.profile), Array.isArray(e.travelers) && e.travelers.length && this._mergeTravelerData(e.travelers));
   }
   _deriveDataFromAppState(t) {
-    var m;
+    var f;
     if (!t || typeof t != "object")
       return null;
     const e = {};
     this.logger.debug("Deriving data from state", { hasAuthUser: !!t.authUser, hasProfile: !!t.accountProfile });
-    const r = t.authUser || {}, i = t.accountProfile || {}, o = i.personalData || i.personal || i, s = i.contact || i.contactInformation || i, a = i.address || s.address || i.primaryAddress || ((m = i.contactInformation) == null ? void 0 : m.address), l = a && typeof a == "object" ? a : i;
+    const r = t.authUser || {}, i = t.accountProfile || {}, o = i.personalData || i.personal || i, s = i.contact || i.contactInformation || i, a = i.address || s.address || i.primaryAddress || ((f = i.contactInformation) == null ? void 0 : f.address), l = a && typeof a == "object" ? a : i;
     l.zip || l.zipCode || l.postalCode, (r.name || r.displayName) && (e.name = r.name || r.displayName), (r.givenName || r.firstName) && (e.firstName = r.givenName || r.firstName), (r.surname || r.lastName) && (e.lastName = r.surname || r.lastName), (r.email || r.username || r.userPrincipalName) && (e.email = r.email || r.username || r.userPrincipalName), o.firstName && (e.firstName = o.firstName), o.lastName && (e.lastName = o.lastName), o.salutation && (e.salutation = o.salutation), o.dateOfBirth && (e.birthDate = o.dateOfBirth), s.email && (e.email = s.email);
     const n = this._selectPhoneFromSources(s, i), c = this._selectMobilePhoneFromSources(s, i), u = this._selectLandlinePhoneFromSources(s, i);
     n && (e.phone = n), c && (e.phoneMobile = c), u && (e.phoneLandline = u);
@@ -1198,17 +1198,17 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
       country: l.country || l.countryCode || l.countryRegion
     });
     if (h && Object.keys(h).length > 0 && (e.address = h), !e.name) {
-      const g = this._getFullNameFromData({
+      const m = this._getFullNameFromData({
         firstName: e.firstName,
         lastName: e.lastName
       });
-      g && (e.name = g);
+      m && (e.name = m);
     }
-    const d = this._compactObject(e), p = Array.isArray(t.accountTravelers) ? this._normalizeTravelerRecords(t.accountTravelers) : [];
-    if (!d && p.length === 0)
+    const d = this._compactObject(e), g = Array.isArray(t.accountTravelers) ? this._normalizeTravelerRecords(t.accountTravelers) : [];
+    if (!d && g.length === 0)
       return null;
-    const b = {};
-    return d && Object.keys(d).length > 0 && (b.profile = d), p.length > 0 && (b.travelers = p), Object.keys(b).length > 0 ? b : null;
+    const p = {};
+    return d && Object.keys(d).length > 0 && (p.profile = d), g.length > 0 && (p.travelers = g), Object.keys(p).length > 0 ? p : null;
   }
   _wireAuthComponent() {
     typeof document > "u" || this._resolveAuthComponent();
@@ -1353,22 +1353,22 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
     if (r) {
       let h = this._transformProfilePayload(r);
       if (!h) {
-        const d = r.personalData || r.personal || r, p = r.contact || r.contactInformation || r, b = r.address || p.address, m = b && typeof b == "object" ? b : r;
+        const d = r.personalData || r.personal || r, g = r.contact || r.contactInformation || r, p = r.address || g.address, f = p && typeof p == "object" ? p : r;
         h = this._compactObject({
           name: r.displayName || r.name,
           firstName: d.firstName || r.firstName,
           lastName: d.lastName || r.lastName,
           salutation: d.salutation || r.salutation,
           birthDate: d.dateOfBirth || r.dateOfBirth,
-          email: p.email || r.email,
-          phone: this._selectPhoneFromSources(p, r),
-          phoneMobile: this._selectMobilePhoneFromSources(p, r),
-          phoneLandline: this._selectLandlinePhoneFromSources(p, r),
+          email: g.email || r.email,
+          phone: this._selectPhoneFromSources(g, r),
+          phoneMobile: this._selectMobilePhoneFromSources(g, r),
+          phoneLandline: this._selectLandlinePhoneFromSources(g, r),
           address: this._compactObject({
-            street: m.street || m.street1,
-            city: m.city,
-            postalCode: m.postalCode || m.zip || m.zipCode,
-            country: m.country || m.countryCode
+            street: f.street || f.street1,
+            city: f.city,
+            postalCode: f.postalCode || f.zip || f.zipCode,
+            country: f.country || f.countryCode
           })
         });
       }
@@ -1468,7 +1468,7 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
     if (!r)
       return e < v ? (await this._delay(_ * e), this._fetchProfileFromEndpoint(t, e + 1)) : (this._profileFetchRetries = 0, null);
     try {
-      !i && e === 1 && !t && await this._delay(R);
+      !i && e === 1 && !t && await this._delay(G);
       const o = await fetch(this.profileEndpoint, {
         headers: { Authorization: `Bearer ${r}` }
       });
@@ -1543,7 +1543,7 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
       return this.logger.warn("MSAL fallback profile fetch aborted after maximum retries"), this._msalProfileFetchRetries = 0, null;
     this._msalProfileFetchRetries = r;
     try {
-      r === 1 && !e && await this._delay(R);
+      r === 1 && !e && await this._delay(G);
       const i = await fetch(this.profileEndpoint, {
         headers: { Authorization: `Bearer ${t}` }
       });
@@ -1554,7 +1554,7 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
             if (s) {
               const a = this._msalScopes.length ? this._msalScopes : this._resolveMsalScopes(), l = await this.msalInstance.acquireTokenSilent({ scopes: a, account: s, forceRefresh: !0 });
               if (l != null && l.accessToken)
-                return this._msalAccessToken = l.accessToken, await this._delay(_ * r + R), this._fetchProfileWithToken(l.accessToken, !0, r + 1);
+                return this._msalAccessToken = l.accessToken, await this._delay(_ * r + G), this._fetchProfileWithToken(l.accessToken, !0, r + 1);
             }
           } catch (s) {
             this.logger.warn("MSAL token refresh failed", s);
@@ -1810,7 +1810,7 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
     }
   }
   _ensureObserver() {
-    if (typeof document > "u")
+    if (this.observer || typeof document > "u")
       return;
     if (!document.body) {
       setTimeout(() => this._ensureObserver(), 100);
@@ -1877,8 +1877,8 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
       { selectors: this.zipSelectors, value: (h = t.address) == null ? void 0 : h.postalCode },
       { selectors: this.countrySelectors, value: (d = t.address) == null ? void 0 : d.country }
     ];
-    for (const { selectors: p, value: b, lock: m, lockReason: g } of n)
-      this.injectValue(p, b, { lock: !!m, lockReason: g || null });
+    for (const { selectors: g, value: p, lock: f, lockReason: m } of n)
+      this.injectValue(g, p, { lock: !!f, lockReason: m || null });
     t.birthDate && this._populateSplitDate(
       t.birthDate,
       this.birthdateDaySelectors,
@@ -1898,7 +1898,7 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
     this._ensureObserver();
     const e = !!(this.travelerCountrySelectors && this.travelerCountrySelectors.trim());
     this.travelersData.forEach((r, i) => {
-      var l, n, c, u, h, d, p, b, m;
+      var l, n, c, u, h, d, g, p, f;
       const o = (r == null ? void 0 : r.isLocked) === !0, s = (r == null ? void 0 : r.lockReason) || "Diese Person ist Teil einer bevorstehenden Buchung — bitte wenden Sie sich an den Kundenservice.", a = [
         { selectors: this.travelerFirstNameSelectors, value: r.firstName },
         { selectors: this.travelerLastNameSelectors, value: r.lastName },
@@ -1917,8 +1917,8 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
         { selectors: this.travelerZipSelectors, value: (c = r.address) == null ? void 0 : c.postalCode },
         { selectors: this.travelerCountrySelectors, value: ((u = r.address) == null ? void 0 : u.country) || ((d = (h = this.userData) == null ? void 0 : h.address) == null ? void 0 : d.country) }
       ];
-      for (const g of a) {
-        const { selectors: C, value: Z, alwaysLock: S, alwaysLockReason: f } = g;
+      for (const m of a) {
+        const { selectors: C, value: Z, alwaysLock: S, alwaysLockReason: b } = m;
         if (!C)
           continue;
         const I = C.replace(/\{i\+1\}/g, String(i + 1)).replace(/\{i\}/g, String(i));
@@ -1928,14 +1928,14 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
           value: Z,
           foundElement: this.shadowRoot ? this.shadowRoot.querySelector(I) : document.querySelector(I)
         });
-        const L = S || o, w = S ? f : s;
+        const L = S || o, w = S ? b : s;
         this.injectValue(I, Z, { lock: L, lockReason: w });
       }
       r.birthDate && this._populateSplitDate(
         r.birthDate,
-        (p = this.travelerBirthdateDaySelectors) == null ? void 0 : p.replace(/\{i\+1\}/g, String(i + 1)).replace(/\{i\}/g, String(i)),
-        (b = this.travelerBirthdateMonthSelectors) == null ? void 0 : b.replace(/\{i\+1\}/g, String(i + 1)).replace(/\{i\}/g, String(i)),
-        (m = this.travelerBirthdateYearSelectors) == null ? void 0 : m.replace(/\{i\+1\}/g, String(i + 1)).replace(/\{i\}/g, String(i)),
+        (g = this.travelerBirthdateDaySelectors) == null ? void 0 : g.replace(/\{i\+1\}/g, String(i + 1)).replace(/\{i\}/g, String(i)),
+        (p = this.travelerBirthdateMonthSelectors) == null ? void 0 : p.replace(/\{i\+1\}/g, String(i + 1)).replace(/\{i\}/g, String(i)),
+        (f = this.travelerBirthdateYearSelectors) == null ? void 0 : f.replace(/\{i\+1\}/g, String(i + 1)).replace(/\{i\}/g, String(i)),
         !1,
         { lock: o, lockReason: s }
       );
@@ -2479,8 +2479,8 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
     if (!r || !r.parentElement)
       return;
     let i = this._travelerSelectors.get(e);
-    if (!i) {
-      i = document.createElement("fieldset"), i.className = "twerenbold-traveler-selector", i.setAttribute("data-traveler-index", String(t.index));
+    if (i && (!i.isConnected || i._travelersData !== this.travelersData) && (i.remove(), this._travelerSelectors.delete(e), i = null), !i) {
+      i = document.createElement("fieldset"), i._travelersData = this.travelersData, i.className = "twerenbold-traveler-selector", i.setAttribute("data-traveler-index", String(t.index));
       const s = document.createElement("legend");
       s.textContent = "Aus Kundenkonto", s.style.cssText = "color: var(--traveler-selector-legend-color, var(--primary-color, #007bff)); font-weight: normal; font-size:small;margin-bottom: 0px;padding:0 5px;width:auto;", i.appendChild(s);
       const a = document.createElement("label");
@@ -2489,15 +2489,23 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
       l.className = "twerenbold-traveler-select", l.style.cssText = "padding: 6px 12px; border: 1px solid #ccc; border-radius: var(--select-border-radius, 0px); font-size: var(--select-font-size, 14px); cursor: pointer;", l.name = `twerenbold-traveler-select-${t.index}`;
       const n = document.createElement("option");
       n.value = "-1", n.textContent = "-- Bitte wählen --", l.appendChild(n), this.travelersData.forEach((h, d) => {
-        const p = document.createElement("option");
-        p.value = String(d);
-        const b = [h.firstName, h.lastName].filter(Boolean).join(" ");
-        p.textContent = b || `Reisende/r ${d + 1}`, l.appendChild(p);
+        const g = document.createElement("option");
+        g.value = String(d);
+        const p = [h.firstName, h.lastName].filter(Boolean).join(" ");
+        g.textContent = p || `Reisende/r ${d + 1}`, l.appendChild(g);
       });
       const c = document.createElement("span");
       c.textContent = "Wählen Sie optional einen Reisenden aus Ihrem Kundenkonto aus.", c.style.cssText = "line-height: 13px;font-size: 12px; color: var(--traveler-selector-description-color, var(--primary-color-dark, #666)); font-weight: normal; margin-left: 8px;", l.addEventListener("change", (h) => {
         const d = parseInt(h.target.value, 10);
-        d >= 0 && d < this.travelersData.length && (this._activeTravelerSelections.set(e, d), this._fillTravelerFieldsForGroup(t, d));
+        if (d >= 0 && d < this.travelersData.length) {
+          this._activeTravelerSelections.set(e, this.travelersData[d]);
+          const g = this._detectTravelerFieldGroups().find((p) => p.index === t.index);
+          g && this._fillTravelerFieldsForGroup(g, d);
+        } else {
+          this._activeTravelerSelections.delete(e);
+          const g = this._detectTravelerFieldGroups().find((p) => p.index === t.index);
+          g == null || g.fields.forEach((p) => this._releaseLockFromElement(p));
+        }
       }), i.appendChild(a), i.appendChild(l), i.appendChild(c), i.style.cssText = `
         background: var(--traveler-selector-background, var(--primary-color-light, #e6f0ff));
         border: 1px solid var(--traveler-selector-border-color, var(--primary-color, #007bff));
@@ -2535,21 +2543,34 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
       this._travelerSelectors.set(e, i);
     }
     const o = this._activeTravelerSelections.get(e);
-    if (o !== void 0) {
-      const s = i.querySelector("select");
-      s && (s.value = String(o));
+    if (o) {
+      const s = this.travelersData.map((l, n) => ({ traveler: l, index: n })).filter(({ traveler: l }) => o.id != null ? l.id === o.id : l === o), a = i.querySelector("select");
+      s.length === 1 ? (a && (a.value = String(s[0].index)), this._restoreTravelerLocks(t, s[0].traveler)) : (this._activeTravelerSelections.delete(e), a && (a.value = "-1"));
+    }
+  }
+  _restoreTravelerLocks(t, e) {
+    var s;
+    const r = e.isLocked === !0, i = e.lockReason || "Diese Person ist Teil einer bevorstehenden Buchung — bitte wenden Sie sich an den Kundenservice.", o = (s = this.travelerEmailSelectors) == null ? void 0 : s.replace(/\{i\}/g, String(t.index));
+    for (const a of new Set(t.fields)) {
+      if (this._isExcludedElement(a)) continue;
+      let l = !1;
+      try {
+        l = !!o && a.matches(o);
+      } catch {
+      }
+      (r || l) && this._applyLockToElement(a, l ? "Die E-Mail-Adresse ist der Schlüssel zum Kundenkonto und kann hier nicht geändert werden." : i);
     }
   }
   /**
    * Fills traveler fields for a specific group with data from selected traveler
    */
   _fillTravelerFieldsForGroup(t, e) {
-    var c, u, h, d, p, b, m;
+    var c, u, h, d, g, p, f;
     if (e < 0 || e >= this.travelersData.length)
       return;
     const r = this.travelersData[e], i = t.index, o = (r == null ? void 0 : r.isLocked) === !0, s = (r == null ? void 0 : r.lockReason) || "Diese Person ist Teil einer bevorstehenden Buchung — bitte wenden Sie sich an den Kundenservice.";
-    t.fields.forEach((g) => {
-      this.touchedFields.delete(g);
+    t.fields.forEach((m) => {
+      this.touchedFields.delete(m);
     }), this._ensureObserver();
     const l = [
       { selectors: this.travelerFirstNameSelectors, value: r.firstName },
@@ -2567,27 +2588,27 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
       { selectors: this.travelerCitySelectors, value: (u = r.address) == null ? void 0 : u.city },
       { selectors: this.travelerZipSelectors, value: (h = r.address) == null ? void 0 : h.postalCode },
       { selectors: this.travelerCountrySelectors, value: (d = r.address) == null ? void 0 : d.country }
-    ].filter((g) => g.selectors).map((g) => ({ ...g, indexed: g.selectors.replace(/\{i\}/g, String(i)) })), n = [
+    ].filter((m) => m.selectors).map((m) => ({ ...m, indexed: m.selectors.replace(/\{i\}/g, String(i)) })), n = [
       this.travelerBirthdateDaySelectors,
       this.travelerBirthdateMonthSelectors,
       this.travelerBirthdateYearSelectors
-    ].filter(Boolean).map((g) => g.replace(/\{i\}/g, String(i)));
-    [...l.map((g) => g.indexed), ...n].forEach((g) => {
+    ].filter(Boolean).map((m) => m.replace(/\{i\}/g, String(i)));
+    [...l.map((m) => m.indexed), ...n].forEach((m) => {
       try {
-        document.querySelectorAll(g).forEach((C) => this._releaseLockFromElement(C));
+        document.querySelectorAll(m).forEach((C) => this._releaseLockFromElement(C));
       } catch (C) {
-        this.logger.debug("Skipping lock release for invalid selector", g, C);
+        this.logger.debug("Skipping lock release for invalid selector", m, C);
       }
     });
-    for (const g of l) {
-      const C = g.alwaysLock || o, Z = g.alwaysLock ? g.alwaysLockReason : s;
-      this.injectValue(g.indexed, g.value, { forceUpdate: !0, lock: C, lockReason: Z });
+    for (const m of l) {
+      const C = m.alwaysLock || o, Z = m.alwaysLock ? m.alwaysLockReason : s;
+      this.injectValue(m.indexed, m.value, { forceUpdate: !0, lock: C, lockReason: Z });
     }
     r.birthDate && this._populateSplitDate(
       r.birthDate,
-      (p = this.travelerBirthdateDaySelectors) == null ? void 0 : p.replace(/\{i\}/g, String(i)),
-      (b = this.travelerBirthdateMonthSelectors) == null ? void 0 : b.replace(/\{i\}/g, String(i)),
-      (m = this.travelerBirthdateYearSelectors) == null ? void 0 : m.replace(/\{i\}/g, String(i)),
+      (g = this.travelerBirthdateDaySelectors) == null ? void 0 : g.replace(/\{i\}/g, String(i)),
+      (p = this.travelerBirthdateMonthSelectors) == null ? void 0 : p.replace(/\{i\}/g, String(i)),
+      (f = this.travelerBirthdateYearSelectors) == null ? void 0 : f.replace(/\{i\}/g, String(i)),
       !0,
       { lock: o, lockReason: s }
     );
@@ -2604,7 +2625,7 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
     }));
   }
   _clearUserData() {
-    this._clearProfileCache(), this.userData = null, this.travelersData = [], this.touchedFields.clear(), this._msalAccessToken = null, this._profileFetchRetries = 0, this._msalProfileFetchRetries = 0, this._authUserSnapshot = null, this._msalAccount = null, this._broadcastDataUpdate();
+    this._clearProfileCache(), this.userData = null, this.travelersData = [], this._travelerSelectors.forEach((t) => t.remove()), this._travelerSelectors.clear(), this._activeTravelerSelections.clear(), this.touchedFields.clear(), this._msalAccessToken = null, this._profileFetchRetries = 0, this._msalProfileFetchRetries = 0, this._authUserSnapshot = null, this._msalAccount = null, this._broadcastDataUpdate();
   }
   updated(t) {
     super.updated(t), t.has("accountComponentSelector") && this._resolveAccountComponents(), t.has("authComponentSelector") && (this._authLookupAttempts = 0, this._resolveAuthComponent()), t.has("theme") && this._loginBenefitPopup && (this.theme ? this._loginBenefitPopup.setAttribute("theme", this.theme) : this._loginBenefitPopup.removeAttribute("theme"));
@@ -2682,8 +2703,8 @@ customElements.get(T) || customElements.define(T, F);
       return c;
     const u = n.find(
       (d) => {
-        var p, b, m;
-        return !!((p = d.dataset) != null && p.firstNameSelectors || (b = d.dataset) != null && b.lastNameSelectors || (m = d.dataset) != null && m.emailSelectors);
+        var g, p, f;
+        return !!((g = d.dataset) != null && g.firstNameSelectors || (p = d.dataset) != null && p.lastNameSelectors || (f = d.dataset) != null && f.emailSelectors);
       }
     );
     return u || (n.length > 1 && y.warn("Multiple script[data-client-id] tags found; using the first one as fallback."), n[0]);
