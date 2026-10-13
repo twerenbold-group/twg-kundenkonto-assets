@@ -1,5 +1,5 @@
 {
-  "sourceCommit": "1ab090ef2d01e2dac12e23eb6ee5a124f1d59f31",
+  "sourceCommit": "e3978a2ccc598330049c50f57c64f38efb5a9da7",
   "files": [
     {
       "path": "v1/ProtocolUtils-h5d79O2w.js",
@@ -46,6 +46,10 @@
       "sha256": "e488c3da55f4b620c6f45e5e9115e470f118d010d4c0336596dd8a0f9cee4dd1"
     },
     {
+      "path": "v1/index-CgbWBKBt.js",
+      "sha256": "618c6d8db3347ab9e1b8c5231307c3cadd874356a8c249d9a89fdd509a96d1ba"
+    },
+    {
       "path": "v1/index-DYy2IthT.js",
       "sha256": "f4d71c934c3d339bdd77adde195e987c883f3415631abb6e3ca6d4dd76fb867b"
     },
@@ -67,7 +71,7 @@
     },
     {
       "path": "v1/oauth-callback.bundle.js",
-      "sha256": "44759d92806bb6c7f2233853215dae27241e1221b9d108fdb0404dc462f80449"
+      "sha256": "5970b45a7610a89137bca00efd7717ac0ced30c49e45b0e73e05b9006f0e0459"
     },
     {
       "path": "v1/postal-codes.json",
@@ -83,15 +87,15 @@
     },
     {
       "path": "v1/twerenbold-account-embed.bundle.js",
-      "sha256": "27acd2916dc56fd671b9893c259b70d84479ff53174c50a80b45d2b6864b9409"
+      "sha256": "fddfc0a5279fb8a6c3475504b4060313d24e2fdac8aa3f9c609ec868119619b3"
     },
     {
-      "path": "v1/twerenbold-account-embed.entry-e5HNfGa-.js",
-      "sha256": "9c998193a304ee6d61bb051be3c4f83dbb4ecc05c434df0b99d83f73efcab33b"
+      "path": "v1/twerenbold-account-embed.entry-7s7bhr4E.js",
+      "sha256": "ec9980a96fe103c5ac401e48ed4231139588c4f356c8901e3ca25ee7c1721cad"
     },
     {
       "path": "v1/twerenbold-components.bundle.js",
-      "sha256": "9a616c7600afc1eca807841ecd4c90472ab924547589fd94591c4d4446615714"
+      "sha256": "8680e4d6ec0a191e28f4f5af2f7cd1d1f7ee0d82b9bb730798f88af7c39b2c91"
     },
     {
       "path": "v1/twerenbold-design-system.css",

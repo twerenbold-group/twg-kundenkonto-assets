@@ -1,9 +1,9 @@
 var A = Object.defineProperty;
 var _ = (s, e, t) => e in s ? A(s, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : s[e] = t;
 var l = (s, e, t) => _(s, typeof e != "symbol" ? e + "" : e, t);
-import { t as S, w as v, i as N, f as M, l as I, s as L, a as D, v as z, p as E, b as B, g as u } from "./twerenbold-account-embed.entry-e5HNfGa-.js";
-import { A as K, c as V, d as W, e as Y, h as J, C as Z, j as Q, F as X, H as ee, N as te, O as re, T as ie, k as ae, m as oe, n as se } from "./twerenbold-account-embed.entry-e5HNfGa-.js";
-import { f as p, s as k, r as h, q as r, a as O } from "./scroll-lock-Cdi8R-Hj.js";
+import { t as S, w as v, i as N, f as M, l as I, s as L, a as D, v as z, p as E, b as B, g as u, c as O } from "./twerenbold-account-embed.entry-7s7bhr4E.js";
+import { A as V, d as W, e as Y, h as J, j as Z, C as Q, k as X, F as ee, H as te, N as re, O as ie, T as ae, m as oe, n as se, o as ne } from "./twerenbold-account-embed.entry-7s7bhr4E.js";
+import { f as p, s as k, r as h, q as r, a as P } from "./scroll-lock-Cdi8R-Hj.js";
 class g extends p {
   constructor() {
     super(), this.trip = null, this.travelers = [], this.isLoading = !1, this.errorMessage = "", this.successMessage = "", this.activeTab = "overview", this.apiUrl = "", this.authToken = "", this.canEdit = !1, this.theme = "twerenbold", this.showCheckIn = !1, this.checkInData = null, this._newTraveler = {
@@ -984,7 +984,7 @@ l(y, "styles", h`
         }
     `);
 customElements.get("trip-overview-widget") || customElements.define("trip-overview-widget", y);
-const P = E("global-app-state"), U = {
+const U = E("global-app-state"), G = {
   theme: "twerenbold",
   isAuthenticated: !1,
   authUser: null,
@@ -1003,7 +1003,7 @@ const P = E("global-app-state"), U = {
 };
 class $ extends p {
   constructor() {
-    super(), this.state = { ...U }, this._initializeGlobalApp();
+    super(), this.state = { ...G }, this._initializeGlobalApp();
   }
   async _initializeGlobalApp() {
     try {
@@ -1027,7 +1027,7 @@ class $ extends p {
   _updateState(e) {
     if (this.state = { ...this.state, ...e }, e.authUser !== void 0 || e.isAuthenticated !== void 0) {
       const t = this.state.isAuthenticated ? this.state.authUser : null;
-      O.setContextUser(t);
+      P.setContextUser(t);
     }
     this._persistState(), this.state.isInitializing || this._provideGlobalContext(), this.dispatchEvent(new CustomEvent("app-state-changed", {
       detail: e,
@@ -1045,7 +1045,7 @@ l($, "properties", {
   state: { type: Object, state: !0 }
 });
 customElements.define("global-app-state-provider", $);
-const F = (s) => {
+const j = (s) => {
   var e;
   return e = class extends s {
     constructor() {
@@ -1054,7 +1054,7 @@ const F = (s) => {
     connectedCallback() {
       super.connectedCallback(), `${this.constructor.name}`, setTimeout(() => {
         try {
-          this._globalAppContext = B(this, P), this._globalAppContext && this._globalAppContext.state ? (`${this.constructor.name}`, this.requestUpdate()) : console.warn(`⚠️ ${this.constructor.name} could not connect to global context`);
+          this._globalAppContext = B(this, U), this._globalAppContext && this._globalAppContext.state ? (`${this.constructor.name}`, this.requestUpdate()) : console.warn(`⚠️ ${this.constructor.name} could not connect to global context`);
         } catch (t) {
           console.error(`❌ ${this.constructor.name} global context error:`, t);
         }
@@ -1469,7 +1469,7 @@ l(T, "styles", h`
     `);
 customElements.get("user-status-widget") || customElements.define("user-status-widget", T);
 (function() {
-  if (typeof window > "u" || typeof document > "u") return;
+  if (typeof window > "u" || typeof document > "u" || O) return;
   const e = window.twerenboldConfig;
   if (e && e.autoBootstrapAppState === !1) return;
   const t = [
@@ -1497,28 +1497,28 @@ customElements.get("user-status-widget") || customElements.define("user-status-w
   document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", i, { once: !0 }) : i();
 })();
 export {
-  K as AccountManager,
-  V as AccountOverviewComponent,
-  W as AppStateProvider,
-  Y as AuthNotifications,
-  J as AuthenticatedComponent,
-  Z as ClubStatusComponent,
+  V as AccountManager,
+  W as AccountOverviewComponent,
+  Y as AppStateProvider,
+  J as AuthNotifications,
+  Z as AuthenticatedComponent,
+  Q as ClubStatusComponent,
   m as ContextExampleComponent,
-  Q as CurrentTripComponent,
-  X as Favorites,
+  X as CurrentTripComponent,
+  ee as Favorites,
   $ as GlobalAppContext,
-  ee as HeaderAccountMenu,
+  te as HeaderAccountMenu,
   b as ModularNavigation,
-  te as NewsletterSignup,
-  re as OAuthLogin,
+  re as NewsletterSignup,
+  ie as OAuthLogin,
   g as TripDetailsComponent,
   y as TripOverviewWidget,
-  ie as TripsList,
-  ae as TwerenboldAccountEmbed,
+  ae as TripsList,
+  oe as TwerenboldAccountEmbed,
   T as UserStatusWidget,
-  oe as appStateContext,
-  P as globalAppStateContext,
-  se as mountAccountPortal,
+  se as appStateContext,
+  U as globalAppStateContext,
+  ne as mountAccountPortal,
   v as withAppState,
-  F as withGlobalAppState
+  j as withGlobalAppState
 };
