@@ -1,5 +1,5 @@
 {
-  "sourceCommit": "2645c0ac29ba0f06cce89b4ec73b47109ecae144",
+  "sourceCommit": "e41312c156949cc5b91b2af4ea4ae2ba700ce3dc",
   "files": [
     {
       "path": "v1/ProtocolUtils-h5d79O2w.js",
@@ -111,7 +111,7 @@
     },
     {
       "path": "v1/watchlist-syncer.bundle.js",
-      "sha256": "44732443e5d532e8212a7d5e2d655717235c1ddbb4945bbaa524bfde1532358a"
+      "sha256": "49cdff3d9c9cefebc908e7dbcf13baf0ae639da43e9695ea996beec2793cb039"
     }
   ]
 }
