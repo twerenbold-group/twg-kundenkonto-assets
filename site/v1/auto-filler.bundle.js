@@ -1622,7 +1622,7 @@ const D = ["oauth-auth-component", "[data-auth-component]"], M = "app-state-prov
     };
     let a;
     try {
-      a = (await import("./index-BWVyC-5p.js")).PublicClientApplication;
+      a = (await import("./index-DYy2IthT.js")).PublicClientApplication;
     } catch (n) {
       this.logger.error("Failed to load MSAL library", n);
       return;
