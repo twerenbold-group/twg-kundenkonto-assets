@@ -1,5 +1,5 @@
 {
-  "sourceCommit": "d0b956ffb2e563886a92d5862c2b75edc7d1ebf9",
+  "sourceCommit": "7cca06f2dbb595ba1a35de096758456a5602148e",
   "files": [
     {
       "path": "v1/ProtocolUtils-h5d79O2w.js",
@@ -34,6 +34,14 @@
       "sha256": "508d2efa7531546d98bf63588c7c92c2299c57c922f206547021b6ba2cf54362"
     },
     {
+      "path": "v1/assets/newsletter/rmt-anchor.png",
+      "sha256": "a4da07cd625160588227c43b0980b5e7a55dde4a7a91700cb8cd1d142d85ac52"
+    },
+    {
+      "path": "v1/assets/newsletter/velo.svg",
+      "sha256": "b716084b94ca4964420ab96e5b8a201f6bcf9dd8dd60de9514ea91b7c2dfb254"
+    },
+    {
       "path": "v1/auto-filler.bundle.js",
       "sha256": "c052fe8ee56c997371a5531d3ea21d50c140e778ccb989b5ee21f7e37db8534d"
     },
@@ -43,7 +51,7 @@
     },
     {
       "path": "v1/config/language-config.json",
-      "sha256": "7c65f23c7c9765f1da6ca620bb896ceb4adfeb8ff1c9293e335efeb5d499ce78"
+      "sha256": "7210b8bdf4e8963c5cd369b95d301533f72d3162ab258031e45faf218be3e6e1"
     },
     {
       "path": "v1/css-variables.css",
@@ -91,15 +99,15 @@
     },
     {
       "path": "v1/twerenbold-account-embed.bundle.js",
-      "sha256": "35bb7611b31f19ecfe3d61cd16e2a8b26407be16550f10b3452e89f7b7de05d6"
+      "sha256": "b996f63710dc61b974d28b95dccf093a800bc417f9f7b7457e4d6f25727ecf85"
     },
     {
-      "path": "v1/twerenbold-account-embed.entry-DIuCyj6A.js",
-      "sha256": "b11e2bbd1bf1146ec246335c0e53d90efe8ca51dcf6b01121710315d1d26dae1"
+      "path": "v1/twerenbold-account-embed.entry-B4X3_ndx.js",
+      "sha256": "b67753ab19c6486175042f7c1f1434033ecaded691d39ded642bd41505b00f52"
     },
     {
       "path": "v1/twerenbold-components.bundle.js",
-      "sha256": "8537108d48b0943ed04aced46647eb344d61bdd0647638a1be462e62c7e7bfaf"
+      "sha256": "76d71852374390ca4297ca9d2614c0ec8c5c1f897505520188663e596a029369"
     },
     {
       "path": "v1/twerenbold-design-system.css",
