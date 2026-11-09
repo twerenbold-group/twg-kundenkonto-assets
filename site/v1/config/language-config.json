@@ -48,26 +48,28 @@
     "overlayLoginText": "Melden Sie sich mit ihrem bestehenden Kundenkonto an und nutzen Sie alle Vorteile.",
     "overlayLoginBenefits": [],
     "overlayLoginButton": "Anmelden",
-    "overlayRegisterTitle": "Ich benötige ein Kundenkonto",
+    "overlayRegisterTitle": "Ich benötige ein Konto",
     "overlayRegisterTexts": [
-      "Neu hier? Oder haben Sie bereits bei uns gebucht?",
-      "Bitte erstellen Sie einmalig Ihr persönliches Kundenkonto, auch wenn Sie bereits Kunde einer oder mehreren Firmen der Twerenbold Reisen Gruppe sind.",
-      "So können Sie künftig alle Vorteile des Kundenkontos nutzen."
+      "Sie sind neu hier oder haben schon bei uns gebucht?",
+      "Dann erstellen Sie hier einmalig Ihr persönliches Konto – für neue Reisegäste und Gäste der Twerenbold Reisen Gruppe.",
+      "Ihr persönliches Konto bietet Ihnen diese Vorteile:"
     ],
     "overlayRegisterBenefits": [
-      "Ihre Daten sind für zukünftige Buchungen bereits hinterlegt",
-      "Sicherer und bequemer Zugriff",
-      "Mitreisende einfach verwalten",
-      "Alle gebuchten Reisen jederzeit einsehen",
-      "Einfache Übersicht Ihrer Newsletter",
-      "Merkzettel mit Ihren Lieblingsreisen"
+      "Ihre Daten sind für künftige Buchungen hinterlegt",
+      "Der Zugriff ist unkompliziert, Ihre Daten sicher",
+      "Sie können Ihre Mitreisenden einfach verwalten",
+      "Ihre gebuchten Reisen sind übersichtlich einsehbar",
+      "Sie steuern, welche Newsletter Sie erhalten wollen",
+      "Sie speichern Ihre Lieblingsreisen auf dem Merkzettel"
     ],
     "overlayRegisterButton": "Konto anlegen",
     "overlayLoadingFlow": "Flow wird gestartet…",
     "overlayLoadingRedirect": "Weiterleitung zur Microsoft-Anmeldung…",
     "overlayHelpText": "Sie benötigen Unterstützung?",
     "overlaySupportEmail": "support@twerenbold.ch",
-    "autoFillerLoginBenefit6": "Merkzettel mit Ihren Lieblingsreisen"
+    "autoFillerLoginBenefit6": "Merkzettel mit Ihren Lieblingsreisen",
+    "newsletterUnsubscribeNoticeTitle": "Bitte beachten Sie",
+    "newsletterUnsubscribeNotice": "Mit einer Abmeldung vom Newsletter verpassen Sie möglicherweise exklusive Angebote, attraktive Aktionen und ausgewählte Reisehighlights.\n\nEine erneute Anmeldung ist jederzeit mit wenigen Klicks in Ihrem Kundenkonto möglich."
   },
   "twerenbold": {
     "account": {
@@ -231,7 +233,7 @@
       "tripsDescription": "Sehen Sie Ihre gebuchten Reisen.",
       "accountTitle": "Persönliche Daten",
       "accountDescription": "Bearbeiten Sie Ihre Personalien und die ihrer Mitreisenden.",
-      "newsletterDescription": "Verwalten Sie Ihre Newsletter-Abos und entscheiden Sie selbst, welche Angebote Sie erhalten möchten.",
+      "newsletterDescription": "Verwalten Sie hier Ihre Newsletter-Abos.",
       "viewTrips": "Meine Reisen",
       "viewMerkliste": "Merkliste",
       "editData": "Daten bearbeiten",
@@ -278,19 +280,19 @@
       "overlayLoginTitle": "Ich habe bereits ein Kundenkonto",
       "overlayLoginText": "Melden Sie sich mit ihrem bestehenden Kundenkonto an und nutzen Sie alle Vorteile.",
       "overlayLoginButton": "Anmelden",
-      "overlayRegisterTitle": "Ich benötige ein Kundenkonto",
+      "overlayRegisterTitle": "Ich benötige ein Konto",
       "overlayRegisterTexts": [
-        "Neu hier? Oder haben Sie bereits bei uns gebucht?",
-        "Bitte erstellen Sie einmalig Ihr persönliches Kundenkonto, auch wenn Sie bereits Kunde einer oder mehreren Firmen der Twerenbold Reisen Gruppe sind.",
-        "So können Sie künftig alle Vorteile des Kundenkontos nutzen."
+        "Sie sind neu hier oder haben schon bei uns gebucht?",
+        "Dann erstellen Sie hier einmalig Ihr persönliches Konto – für neue Reisegäste und Gäste der Twerenbold Reisen Gruppe.",
+        "Ihr persönliches Konto bietet Ihnen diese Vorteile:"
       ],
       "overlayRegisterBenefits": [
-        "Ihre Daten sind für zukünftige Buchungen bereits hinterlegt",
-        "Sicherer und bequemer Zugriff",
-        "Mitreisende einfach verwalten",
-        "Alle gebuchten Reisen jederzeit einsehen",
-        "Einfache Übersicht Ihrer Newsletter",
-        "Merkzettel mit Ihren Lieblingsreisen"
+        "Ihre Daten sind für künftige Buchungen hinterlegt",
+        "Der Zugriff ist unkompliziert, Ihre Daten sicher",
+        "Sie können Ihre Mitreisenden einfach verwalten",
+        "Ihre gebuchten Reisen sind übersichtlich einsehbar",
+        "Sie steuern, welche Newsletter Sie erhalten wollen",
+        "Sie speichern Ihre Lieblingsreisen auf dem Merkzettel"
       ]
     },
     "account": {},
