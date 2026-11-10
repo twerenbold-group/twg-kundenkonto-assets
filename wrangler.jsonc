@@ -1,0 +1,19 @@
+{
+  "name": "twg-kundenkonto-assets",
+  "account_id": "a373a42c0f4754cd4e9a404f3c2991a1",
+  "compatibility_date": "2026-11-10",
+  "workers_dev": true,
+  "assets": {
+    "directory": "./site",
+    "not_found_handling": "none"
+  },
+  "observability": {
+    "enabled": false
+  },
+  "routes": [
+    {
+      "pattern": "kk-script.twgapp.ch/*",
+      "zone_name": "twgapp.ch"
+    }
+  ]
+}

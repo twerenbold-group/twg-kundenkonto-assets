@@ -1,0 +1,5 @@
+/*
+  Access-Control-Allow-Origin: *
+  X-Content-Type-Options: nosniff
+  X-TWG-Asset-Host: cloudflare-worker
+  Cache-Control: public, max-age=0, must-revalidate

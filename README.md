@@ -9,7 +9,7 @@ Only `site/` is deployed. Existing Voegele integrations remain unchanged.
 1. Build a clean reviewed source checkout with `npm ci --ignore-scripts && npm run build`.
 2. Run `python3 tools/export_release.py /absolute/path/to/dist FULL_SOURCE_COMMIT_SHA`.
 3. Review the file diff, verify imports and run the required Rafter review/scans.
-4. Commit the release to main, then manually run `Publish customer-account assets`.
+4. Commit the release to main, then run `npx wrangler@4.63.0 deploy`. See [Worker deployment](WORKER-DEPLOYMENT.md). GitHub Pages is retained only as the legacy fallback.
 5. Verify HTTPS, JavaScript MIME types, CORS and the source commit in `/release.json`.
 
 Older hashed chunks are retained so cached entry files continue to load. Do not delete
